@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -53,33 +54,24 @@ class App extends Component {
 
   //changing state and props are the few things that make react to update the DOM!
   render() {
-  let assignedClasses = ['btn btn--dark-gray', 'btn btn--light-gray'];
   let persons = null;
 
-  //if (this.state.persons.length <= n){classes.push('some class'} (for chaining classes)
-  // then className={classes.join(' ')} to convert it to string
-
   if (this.state.showPersons){ //normal JS code in render
-    assignedClasses = assignedClasses[0]; //toggle between classes;
     persons = (
     <div>
-        {this.state.persons.map((person, index) =>{
-          return <Person
-            name={person.name}
-            age={person.age}
-            key={person.id} //assign unique identifier
-            click={()=>this.removePersonHandler(index)} //()=> or use bind to pass index
-            inputName={(event)=>this.newNameHandler(event, person.id)}/>
-            
-      }
-    )}   
+        <Persons 
+        persons={this.state.persons}
+        clicked={this.removePersonHandler}
+        changed={this.newNameHandler}/>
     </div>
   )
   }
     return(
     <div className="App">
-      <h1>Single Page React App</h1>
-      <button className={assignedClasses} onClick={this.togglePersonHandler}>Toggle Persons</button>
+      <Cockpit
+      persons={this.state.persons}
+      toggle={this.togglePersonHandler}
+      />
       {persons} {/*output persons*/}
     </div>
 )}

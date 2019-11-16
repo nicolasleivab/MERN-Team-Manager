@@ -13,14 +13,12 @@ class App extends Component {
     showPersons: false
   };
 
-  changeNameHandler = (newName)=>{
-    //DON'T do this: this.state.persons[0].name = "Frojack";
+  removePersonHandler = (personIndex)=>{
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    //DON'T do this: this.state.persons = persons;
     this.setState({ //instead use this method included in the Component
-      persons: [  //selected prop must contain same amount of elements
-        {name: newName, age:33},
-        {name: "Sminem", age:17},
-        {name: "Bogdanoff", age:77}
-      ]
+      persons: persons 
     })
     console.log(this.state); //props you don't target won't change (they merge)  
                             //using hooks is different, the old state is replaced by the new one
@@ -48,17 +46,14 @@ class App extends Component {
     if (this.state.showPersons){ //normal JS code in render
       persons = (
         <div>
-        <Person 
-        name={this.state.persons[0].name} 
-        age={this.state.persons[0].age}
-        click={this.changeNameHandler.bind(this, "Jack")}>I hate Bitcoin.</Person> {/*passing methods as props*/}
-        <Person 
-        name={this.state.persons[1].name} 
-        age={this.state.persons[1].age}
-        inputName={this.newNameHandler}>I like Bitcoin.</Person>
-        <Person 
-        name={this.state.persons[2].name} 
-        age={this.state.persons[2].age}>I like Bitcoin.</Person>
+        {this.state.persons.map((person, index) =>{
+          return <Person
+            name={person.name}
+            age={person.age}
+            click={()=>this.removePersonHandler(index)}/> //()=> or use bind to pass index
+        }
+    )} 
+        
         </div>
       )
     }

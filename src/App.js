@@ -42,6 +42,9 @@ class App extends Component {
     
     this.setState({persons: persons});                       
 }
+
+  
+
   togglePersonHandler = ()=>{
     const flagPersons = this.state.showPersons; //toggle flag
     this.setState({showPersons: !flagPersons})
@@ -50,10 +53,14 @@ class App extends Component {
 
   //changing state and props are the few things that make react to update the DOM!
   render() {
-
+  let assignedClasses = ['btn btn--dark-gray', 'btn btn--light-gray'];
   let persons = null;
 
+  //if (this.state.persons.length <= n){classes.push('some class'} (for chaining classes)
+  // then className={classes.join(' ')} to convert it to string
+
   if (this.state.showPersons){ //normal JS code in render
+    assignedClasses = assignedClasses[0]; //toggle between classes;
     persons = (
     <div>
         {this.state.persons.map((person, index) =>{
@@ -72,7 +79,7 @@ class App extends Component {
     return(
     <div className="App">
       <h1>Single Page React App</h1>
-      <button className="btn-dark-gray" onClick={this.togglePersonHandler}>Toggle Persons</button>
+      <button className={assignedClasses} onClick={this.togglePersonHandler}>Toggle Persons</button>
       {persons} {/*output persons*/}
     </div>
 )}

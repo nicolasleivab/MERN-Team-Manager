@@ -8,25 +8,3 @@
     text-align: center;
 
 }
-
-/* Reusable Components */
-
-.btn-dark-gray{
-    background-color: $color-dark-gray;
-    color: $color-white;
-    font-family: inherit;
-    border: solid $color-dark-gray .15rem;
-    border-radius: 1rem;
-    box-shadow: 0 .2rem .3rem $color-light-gray;
-    padding: .5rem;
-
-    &:hover{
-        transform: translate(-1.5px, -1.5px);
-        box-shadow: .3rem .3rem 1rem $color-light-gray;
-    }
-    &:active{
-        transform: translate(1.5px, 1.5px);
-        box-shadow: 0 .2rem .3rem $color-light-gray;
-    }
-
-}

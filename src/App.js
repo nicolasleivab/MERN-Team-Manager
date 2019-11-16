@@ -42,25 +42,31 @@ class App extends Component {
 
   //changing state and props are the few things that make react to update the DOM!
   render() {
+
+    let persons = null;
+
+    if (this.state.showPersons){ //normal JS code in render
+      persons = (
+        <div>
+        <Person 
+        name={this.state.persons[0].name} 
+        age={this.state.persons[0].age}
+        click={this.changeNameHandler.bind(this, "Jack")}>I hate Bitcoin.</Person> {/*passing methods as props*/}
+        <Person 
+        name={this.state.persons[1].name} 
+        age={this.state.persons[1].age}
+        inputName={this.newNameHandler}>I like Bitcoin.</Person>
+        <Person 
+        name={this.state.persons[2].name} 
+        age={this.state.persons[2].age}>I like Bitcoin.</Person>
+        </div>
+      )
+    }
     return(
     <div className="App">
       <h1>Single Page React App</h1>
-      <button className="btn-dark-gray" onClick={this.togglePersonHandler}>Show Persons</button>
-      {this.state.showPersons ? //ternary operator to render content conditionally
-      <div>
-      <Person 
-      name={this.state.persons[0].name} 
-      age={this.state.persons[0].age}
-      click={this.changeNameHandler.bind(this, "Jack")}>I hate Bitcoin.</Person> {/*passing methods as props*/}
-      <Person 
-      name={this.state.persons[1].name} 
-      age={this.state.persons[1].age}
-      inputName={this.newNameHandler}>I like Bitcoin.</Person>
-      <Person 
-      name={this.state.persons[2].name} 
-      age={this.state.persons[2].age}>I like Bitcoin.</Person>
-      </div> : null
-      }
+      <button className="btn-dark-gray" onClick={this.togglePersonHandler}>Toggle Persons</button>
+      {persons} {/*output persons*/}
     </div>
 )}
 };

@@ -9,7 +9,8 @@ class App extends Component {
       {name:"Sminem", age:17},
       {name:"Bogdanoff", age:52}
     ],
-    secondProp: 'some value'
+    secondProp: 'some value',
+    showPersons: false
   };
 
   changeNameHandler = (newName)=>{
@@ -33,12 +34,20 @@ class App extends Component {
       ]
   })                        
 }
+  togglePersonHandler = ()=>{
+    const flagPersons = this.state.showPersons; //toggle flag
+    this.setState({showPersons: !flagPersons})
+    console.log(this.state);
+  }
+
   //changing state and props are the few things that make react to update the DOM!
   render() {
     return(
     <div className="App">
       <h1>Single Page React App</h1>
-      <button onClick={this.changeNameHandler.bind(this, "Frojack")}>Change name</button>
+      <button className="btn-dark-gray" onClick={this.togglePersonHandler}>Show Persons</button>
+      {this.state.showPersons ? //ternary operator to render content conditionally
+      <div>
       <Person 
       name={this.state.persons[0].name} 
       age={this.state.persons[0].age}
@@ -50,6 +59,8 @@ class App extends Component {
       <Person 
       name={this.state.persons[2].name} 
       age={this.state.persons[2].age}>I like Bitcoin.</Person>
+      </div> : null
+      }
     </div>
 )}
 };

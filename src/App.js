@@ -5,16 +5,19 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons : [
-      {name:"Wojak", age:25},
-      {name:"Sminem", age:17},
-      {name:"Bogdanoff", age:52}
+      {id: 1, name:"Wojak", age:25},
+      {id: 2, name:"Sminem", age:17},
+      {id: 3, name:"Bogdanoff", age:52}
     ],
     secondProp: 'some value',
     showPersons: false
   };
 
   removePersonHandler = (personIndex)=>{
-    const persons = this.state.persons;
+    //we create a copy of the array to avoid unpredictable behaviours
+    //***always update state in an immutable fashion
+    //const persons = this.state.persons.slice(); //or
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     //DON'T do this: this.state.persons = persons;
     this.setState({ //instead use this method included in the Component
@@ -23,14 +26,21 @@ class App extends Component {
     console.log(this.state); //props you don't target won't change (they merge)  
                             //using hooks is different, the old state is replaced by the new one
   }
-  newNameHandler = (event)=>{
-    this.setState({ 
-      persons: [ 
-        {name: "Wojak", age:33},
-        {name: event.target.value, age:17}, //target.value for the input value
-        {name: "Bogdanoff", age:77}
-      ]
-  })                        
+  newNameHandler = (event, id)=>{
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]//get the person with the index (first make a copy)
+    };
+    //or const person = Object.assign({}, this.state.persons[personIndex])
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons]; //update array at personIndex position
+    persons[personIndex] = person;
+    
+    this.setState({persons: persons});                       
 }
   togglePersonHandler = ()=>{
     const flagPersons = this.state.showPersons; //toggle flag
@@ -41,22 +51,24 @@ class App extends Component {
   //changing state and props are the few things that make react to update the DOM!
   render() {
 
-    let persons = null;
+  let persons = null;
 
-    if (this.state.showPersons){ //normal JS code in render
-      persons = (
-        <div>
+  if (this.state.showPersons){ //normal JS code in render
+    persons = (
+    <div>
         {this.state.persons.map((person, index) =>{
           return <Person
             name={person.name}
             age={person.age}
-            click={()=>this.removePersonHandler(index)}/> //()=> or use bind to pass index
-        }
-    )} 
-        
-        </div>
-      )
-    }
+            key={person.id} //assign unique identifier
+            click={()=>this.removePersonHandler(index)} //()=> or use bind to pass index
+            inputName={(event)=>this.newNameHandler(event, person.id)}/>
+            
+      }
+    )}   
+    </div>
+  )
+  }
     return(
     <div className="App">
       <h1>Single Page React App</h1>

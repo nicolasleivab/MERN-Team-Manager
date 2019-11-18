@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Persons from '../components/Persons/Persons';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 class App extends Component {
   state = {
@@ -72,12 +74,26 @@ newRoleHandler = (event, id)=>{
     })
     console.log(this.state);
   }
+  //export team to pdf in a table with jsPDF
+  exportPdf = ()=>{
+    const doc = new jsPDF(),
+    col = ["Name","Role"],
+    rows = [],
+    persons = [...this.state.persons];//copy of persons array
+
+    persons.forEach(element => {      
+      const tableRow= [element.name,element.role];
+        rows.push(tableRow);
+
+    });        
+     doc.autoTable(col, rows, { startY: 10 });
+     doc.save('Team.pdf');
+ }
 
   //changing state and props are the few things that make react to update the DOM!
   render() {
   let persons = null;
 
-  
     persons = (
     <div>
         <Persons 
@@ -88,11 +104,11 @@ newRoleHandler = (event, id)=>{
     </div>
   )
   
-    return(
+  return(
     <div className="App">
       <h1>Team Builder</h1>
-      <button className="btn btn--dark-gray">Export Team</button>
-      {persons} {/*output persons*/}
+      <button className="btn btn--dark-gray" onClick={this.exportPdf}>Export Team</button>
+      <div id="capture">{persons}</div> {/*output persons*/}
       <button className="btn btn--dark-gray" onClick={this.addPersonHandler}>+</button>
       
     </div>

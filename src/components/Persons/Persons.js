@@ -2,13 +2,15 @@ import React from 'react';
 
 import Person from './Person/Person';
 
-const persons = (props) => props.persons.map( (person, index) =>{
+const persons = (props) => props.persons.map( (persons, index) =>{
         return <Person
-          name={person.name}
-          age={person.age}
-          key={person.id} //assign unique identifier
+          name={persons.name}
+          role={persons.role}
+          key={persons.id} //assign unique identifier
           click={()=>props.clicked(index)} //()=> or use bind to pass index
-          inputName={(event)=>props.changed(event, person.id)}/>            
+          inputName={(event)=>props.changed(event, persons.id)}
+          inputRole={(event)=>props.roleChanged(event, persons.id)}/>
+              
 });
 
 export default persons;

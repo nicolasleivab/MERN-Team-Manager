@@ -2,9 +2,10 @@
 
 .btn{
     font-family: inherit;
-    border-radius: 1rem;
+    border-radius: 3rem;
     box-shadow: 0 .2rem .3rem $color-light-gray;
-    padding: .5rem;
+    padding: 1.5rem;
+    margin: 1rem;
 
     &--dark-gray{
         background-color: $color-dark-gray;
@@ -16,6 +17,12 @@
         background-color: $color-light-gray;
         color: $color-black;
         border: solid $color-dark-gray .15rem;
+    }
+    &--red{
+        background-color: $color-red;
+        color: $color-black;
+        border: solid $color-dark-gray .15rem;
+        margin: .1;
     }
 
     &:hover{

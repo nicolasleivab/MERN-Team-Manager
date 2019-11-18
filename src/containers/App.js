@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Persons from '../components/Persons/Persons';
-import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
     persons : [
-      {id: 1, name:"Wojak", age:25},
-      {id: 2, name:"Sminem", age:17},
-      {id: 3, name:"Bogdanoff", age:52}
+      {id: 1, name:"Wojak", role:"CTO"},
+      {id: 2, name:"Sminem", role:"Tech Lead"},
+      {id: 3, name:"Bogdanoff", role:"Developer"}
     ],
     secondProp: 'some value',
-    showPersons: false
+    personID: 4
   };
 
   removePersonHandler = (personIndex)=>{
@@ -44,11 +43,33 @@ class App extends Component {
     this.setState({persons: persons});                       
 }
 
-  
+newRoleHandler = (event, id)=>{
+  const personIndex = this.state.persons.findIndex(p => {
+    return p.id === id;
+  });
 
-  togglePersonHandler = ()=>{
-    const flagPersons = this.state.showPersons; //toggle flag
-    this.setState({showPersons: !flagPersons})
+  const person = {
+    ...this.state.persons[personIndex]//get the person with the index (first make a copy)
+  };
+  //or const person = Object.assign({}, this.state.persons[personIndex])
+  person.role = event.target.value;
+
+  const persons = [...this.state.persons]; //update array at personIndex position
+  persons[personIndex] = person;
+  
+  this.setState({persons: persons});                       
+}
+
+  addPersonHandler = ()=>{
+    let currentID = this.state.personID;
+    const persons = [...this.state.persons];
+    persons.push({id: currentID, name:"Wojak", role:"Developer"});
+    //DON'T do this: this.state.persons = persons;
+    currentID++;
+    this.setState({ //instead use this method included in the Component
+      persons: persons,
+      personID: currentID
+    })
     console.log(this.state);
   }
 
@@ -56,23 +77,24 @@ class App extends Component {
   render() {
   let persons = null;
 
-  if (this.state.showPersons){ //normal JS code in render
+  
     persons = (
     <div>
         <Persons 
         persons={this.state.persons}
         clicked={this.removePersonHandler}
-        changed={this.newNameHandler}/>
+        changed={this.newNameHandler}
+        roleChanged={this.newRoleHandler}/>
     </div>
   )
-  }
+  
     return(
     <div className="App">
-      <Cockpit
-      persons={this.state.persons}
-      toggle={this.togglePersonHandler}
-      />
+      <h1>Team Builder</h1>
+      <button className="btn btn--dark-gray">Export Team</button>
       {persons} {/*output persons*/}
+      <button className="btn btn--dark-gray" onClick={this.addPersonHandler}>+</button>
+      
     </div>
 )}
 };

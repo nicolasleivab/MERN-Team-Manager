@@ -4,17 +4,20 @@ import Persons from '../components/Persons/Persons';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
+const storedState = JSON.parse( localStorage.getItem('pastState'));
+const storedID = JSON.parse( localStorage.getItem('pastID'));
+
 class App extends Component {
   state = {
-    persons : [
+   persons : storedState || [
       {id: 1, name:"Wojak", role:"CTO"},
       {id: 2, name:"Sminem", role:"Tech Lead"},
       {id: 3, name:"Bogdanoff", role:"Developer"}
     ],
     secondProp: 'some value',
-    personID: 4
+    personID: storedID || 4
   };
-
+    
   removePersonHandler = (personIndex)=>{
     //we create a copy of the array to avoid unpredictable behaviours
     //***always update state in an immutable fashion
@@ -90,9 +93,17 @@ newRoleHandler = (event, id)=>{
      doc.save('Team.pdf');
  }
 
+ saveToLocal = ()=>{
+  const personsLocal = [...this.state.persons];
+  const currentID = this.state.personID;
+  localStorage.setItem('pastState', JSON.stringify(personsLocal));
+  localStorage.setItem('pastID', JSON.stringify(currentID));
+}
+ 
   //changing state and props are the few things that make react to update the DOM!
   render() {
   let persons = null;
+  this.saveToLocal();
 
     persons = (
     <div>

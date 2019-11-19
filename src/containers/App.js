@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import Persons from '../components/Persons/Persons';
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import 'jspdf-autotable'
 
 const storedState = JSON.parse( localStorage.getItem('pastState'));
 const storedID = JSON.parse( localStorage.getItem('pastID'));
@@ -10,9 +10,9 @@ const storedID = JSON.parse( localStorage.getItem('pastID'));
 class App extends Component {
   state = {
    persons : storedState || [
-      {id: 1, name:"Wojak", email:"a@a.com", role:"CTO"},
-      {id: 2, name:"Sminem", email:"a@a.com", role:"Tech Lead"},
-      {id: 3, name:"Bogdanoff", email:"a@a.com", role:"Developer"}
+      {id: 1, name:"Wojak", email:"wojak@mail.com", role:"CTO", editInputs: false},
+      {id: 2, name:"Sminem", email:"sminem@mail.com", role:"Tech Lead", editInputs: false},
+      {id: 3, name:"Bogdanoff", email:"bodanoff@mail.com", role:"Developer", editInputs: false}
     ],
     secondProp: 'some value',
     personID: storedID || 4
@@ -85,7 +85,7 @@ newMailHandler = (event, id)=>{
   addPersonHandler = ()=>{
     let currentID = this.state.personID;
     const persons = [...this.state.persons];
-    persons.push({id: currentID, name:"Wojak", email:"a@a.com", role:"Developer"});
+    persons.push({id: currentID, name:"Wojak", email:"wojak@mail.com", role:"Developer", editInputs: false});
     //DON'T do this: this.state.persons = persons;
     currentID++;
     this.setState({ //instead use this method included in the Component
@@ -116,6 +116,20 @@ newMailHandler = (event, id)=>{
   localStorage.setItem('pastState', JSON.stringify(personsLocal));
   localStorage.setItem('pastID', JSON.stringify(currentID));
 }
+
+  showInputs = (id)=>{
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+    const person = {
+      ...this.state.persons[personIndex]//get the person with the index (first make a copy)
+    };
+    let personFlag = person.editInputs;//edit and save behaviour
+    person.editInputs = !personFlag;
+    const persons = [...this.state.persons]; //update array at personIndex position
+    persons[personIndex] = person;
+    this.setState({persons: persons});
+  }
  
   //changing state and props are the few things that make react to update the DOM!
   render() {
@@ -129,10 +143,12 @@ newMailHandler = (event, id)=>{
         clicked={this.removePersonHandler}
         changed={this.newNameHandler}
         roleChanged={this.newRoleHandler}
-        mailChanged={this.newMailHandler}/>
+        mailChanged={this.newMailHandler}
+        showInputsClick={this.showInputs}
+        editInputs={this.state.editInputs}/>
     </div>
   )
-  
+
   return(
     <div className="App">
       <h1>Team Builder</h1>

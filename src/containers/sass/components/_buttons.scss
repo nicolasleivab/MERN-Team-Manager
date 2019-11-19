@@ -7,6 +7,12 @@
     padding: 1.5rem;
     margin: 1rem;
 
+    &--rect{
+        height: 3rem;
+        width: 6rem;
+        padding: 0;
+    }
+
     &--dark-gray{
         background-color: $color-dark-gray;
         color: $color-white;
@@ -17,6 +23,11 @@
         background-color: $color-light-gray;
         color: $color-black;
         border: solid $color-dark-gray .15rem;
+    }
+    &--green{
+        background-color: $color-green;
+        color: $color-white;
+        border: solid $color-green .15rem; 
     }
     &--red{
         background-color: $color-red;

@@ -1,4 +1,13 @@
 /* React Components */
+.Person-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+    margin: 0.5rem auto;
+}
+
 .Person{
     max-width: 75rem;
     margin: .5rem auto;

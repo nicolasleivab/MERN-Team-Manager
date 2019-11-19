@@ -16,5 +16,15 @@ body{
 }
 
 input{
-    margin: 1rem;
+    margin: 0 2rem 0 2rem;
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+}
+.text{
+    margin: 0 5rem 0 5rem;
+    text-align: left;
+    max-width: 75rem;
 }

@@ -10,9 +10,9 @@ const storedID = JSON.parse( localStorage.getItem('pastID'));
 class App extends Component {
   state = {
    persons : storedState || [
-      {id: 1, name:"Wojak", role:"CTO"},
-      {id: 2, name:"Sminem", role:"Tech Lead"},
-      {id: 3, name:"Bogdanoff", role:"Developer"}
+      {id: 1, name:"Wojak", email:"a@a.com", role:"CTO"},
+      {id: 2, name:"Sminem", email:"a@a.com", role:"Tech Lead"},
+      {id: 3, name:"Bogdanoff", email:"a@a.com", role:"Developer"}
     ],
     secondProp: 'some value',
     personID: storedID || 4
@@ -65,10 +65,27 @@ newRoleHandler = (event, id)=>{
   this.setState({persons: persons});                       
 }
 
+newMailHandler = (event, id)=>{
+  const personIndex = this.state.persons.findIndex(p => {
+    return p.id === id;
+  });
+
+  const person = {
+    ...this.state.persons[personIndex]//get the person with the index (first make a copy)
+  };
+  //or const person = Object.assign({}, this.state.persons[personIndex])
+  person.email = event.target.value;
+
+  const persons = [...this.state.persons]; //update array at personIndex position
+  persons[personIndex] = person;
+  
+  this.setState({persons: persons});                       
+}
+
   addPersonHandler = ()=>{
     let currentID = this.state.personID;
     const persons = [...this.state.persons];
-    persons.push({id: currentID, name:"Wojak", role:"Developer"});
+    persons.push({id: currentID, name:"Wojak", email:"a@a.com", role:"Developer"});
     //DON'T do this: this.state.persons = persons;
     currentID++;
     this.setState({ //instead use this method included in the Component
@@ -80,12 +97,12 @@ newRoleHandler = (event, id)=>{
   //export team to pdf in a table with jsPDF
   exportPdf = ()=>{
     const doc = new jsPDF(),
-    col = ["Name","Role"],
+    col = ["Name","Email","Role"],
     rows = [],
     persons = [...this.state.persons];//copy of persons array
 
     persons.forEach(element => {      
-      const tableRow= [element.name,element.role];
+      const tableRow= [element.name, element.email, element.role];
         rows.push(tableRow);
 
     });        
@@ -111,7 +128,8 @@ newRoleHandler = (event, id)=>{
         persons={this.state.persons}
         clicked={this.removePersonHandler}
         changed={this.newNameHandler}
-        roleChanged={this.newRoleHandler}/>
+        roleChanged={this.newRoleHandler}
+        mailChanged={this.newMailHandler}/>
     </div>
   )
   
@@ -119,7 +137,16 @@ newRoleHandler = (event, id)=>{
     <div className="App">
       <h1>Team Builder</h1>
       <button className="btn btn--dark-gray" onClick={this.exportPdf}>Export Team</button>
-      <div id="capture">{persons}</div> {/*output persons*/}
+      <div className="Person">
+      <div className="container">
+      <div className="text text--1">Name</div>
+      <div className="text text--2">Email</div>
+      <div className="text text--3">Role</div>
+      </div>
+      </div>
+      {persons} {/*output persons*/}
+     
+      
       <button className="btn btn--dark-gray" onClick={this.addPersonHandler}>+</button>
       
     </div>

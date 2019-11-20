@@ -155,16 +155,15 @@ newMailHandler = (event, id)=>{
       <button className="btn btn--dark-gray" onClick={this.exportPdf}>Export Team</button>
       <div className="Person">
       <div className="container">
-      <div className="text text--1">Name</div>
-      <div className="text text--2">Email</div>
-      <div className="text text--3">Role</div>
+      <div className="filler"></div>
+      <div className="text text--item">Name</div>
+      <div className="text text--item">Email</div>
+      <div className="text text--item">Role</div>
+      <div></div>
       </div>
       </div>
       {persons} {/*output persons*/}
-     
-      
       <button className="btn btn--dark-gray" onClick={this.addPersonHandler}>+</button>
-      
     </div>
 )}
 };

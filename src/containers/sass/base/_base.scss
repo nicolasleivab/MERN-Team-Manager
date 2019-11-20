@@ -16,29 +16,22 @@ body{
 }
 
 input{
-    margin: .3rem 5rem 0 5rem;
-    width: 15rem;
+    margin: 0 5rem 0 5rem;
+    width: 65%;
     font-size: 1.5rem;
 }
 .container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 5fr 5fr 5fr 1fr;
     grid-template-rows: 1fr;
+    width: 100%;
 }
 .text{
     margin: 0 5rem 0 5rem;
-    text-align: left;
-    max-width: 75rem;
-
-    &--item{
-        width: 15rem;
-    }
+    width: 65%;
+    font-size: 1.5rem;
 }
 
-.wrapper{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    margin: 0 0 0 26rem;
-    max-width: 75rem;
+.filler{
+    width: 8rem;
 }

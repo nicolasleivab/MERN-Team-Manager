@@ -1,24 +1,9 @@
 /* React Components */
-.Person-container{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    align-items: center;
-    justify-items: center;
-    margin: 0.5rem auto;
-}
-
 .Person{
-    max-width: 75rem;
+    max-width: 100rem;
     margin: .5rem auto;
     border: solid $color-light-gray .1rem;
     box-shadow: 0 .2rem .3rem $color-dark-gray;
-    padding: 1.7 rem;
-    text-align: center;
-}
-.Person2{
-    max-width: 75rem;
-    margin: .5rem auto;
     padding: 1.7 rem;
     text-align: center;
 }

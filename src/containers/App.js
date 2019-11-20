@@ -6,17 +6,6 @@ import 'jspdf-autotable'
 
 const storedState = JSON.parse( localStorage.getItem('pastState'));
 const storedID = JSON.parse( localStorage.getItem('pastID'));
-/*let input = document.getElementsByTagName("INPUT");
-// trigger submit button when pressing enter key
-input.addEventListener("keyup", function(event) {
-  // 13 = enter key
-  if (event.keyCode === 13) {
-    // cancel default action
-    event.preventDefault();
-    // trigger button element
-    document.getElementsByTagName("BUTTON").click();
-  }
-});*/
 
 class App extends Component {
   state = {

@@ -16,7 +16,9 @@ body{
 }
 
 input{
-    margin: 0 2rem 0 2rem;
+    margin: .3rem 5rem 0 5rem;
+    width: 15rem;
+    font-size: 1.5rem;
 }
 .container{
     display: grid;
@@ -26,5 +28,17 @@ input{
 .text{
     margin: 0 5rem 0 5rem;
     text-align: left;
+    max-width: 75rem;
+
+    &--item{
+        width: 15rem;
+    }
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    margin: 0 0 0 26rem;
     max-width: 75rem;
 }

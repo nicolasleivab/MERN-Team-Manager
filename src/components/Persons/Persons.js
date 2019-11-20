@@ -12,7 +12,10 @@ const persons = (props) => props.persons.map( (persons, index) =>{
           editInputs={persons.editInputs}
           inputName={(event)=>props.changed(event, persons.id)}
           inputRole={(event)=>props.roleChanged(event, persons.id)}
-          inputMail={(event)=>props.mailChanged(event, persons.id)}/>
+          inputMail={(event)=>props.mailChanged(event, persons.id)}
+          keyUpName={(event)=>props.nameKeyHandler(event, persons.id)}
+          keyUpMail={(event)=>props.mailKeyHandler(event, persons.id)}
+          keyUpRole={(event)=>props.roleKeyHandler(event, persons.id)}/>
               
 });
 

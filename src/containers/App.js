@@ -6,6 +6,17 @@ import 'jspdf-autotable'
 
 const storedState = JSON.parse( localStorage.getItem('pastState'));
 const storedID = JSON.parse( localStorage.getItem('pastID'));
+/*let input = document.getElementsByTagName("INPUT");
+// trigger submit button when pressing enter key
+input.addEventListener("keyup", function(event) {
+  // 13 = enter key
+  if (event.keyCode === 13) {
+    // cancel default action
+    event.preventDefault();
+    // trigger button element
+    document.getElementsByTagName("BUTTON").click();
+  }
+});*/
 
 class App extends Component {
   state = {
@@ -130,6 +141,15 @@ newMailHandler = (event, id)=>{
     persons[personIndex] = person;
     this.setState({persons: persons});
   }
+
+  keyCodeHandler = (event, id)=>{
+    if (event.keyCode === 13) {
+      // cancel default action
+      event.preventDefault();
+      // trigger showInputs on enter key for the current id
+      this.showInputs(id);
+    }
+  }
  
   //changing state and props are the few things that make react to update the DOM!
   render() {
@@ -145,7 +165,10 @@ newMailHandler = (event, id)=>{
         roleChanged={this.newRoleHandler}
         mailChanged={this.newMailHandler}
         showInputsClick={this.showInputs}
-        editInputs={this.state.editInputs}/>
+        editInputs={this.state.editInputs}
+        nameKeyHandler={this.keyCodeHandler}
+        mailKeyHandler={this.keyCodeHandler}
+        roleKeyHandler={this.keyCodeHandler}/>
     </div>
   )
 

@@ -5,9 +5,9 @@ const person = (props) => {
     {props.editInputs ?
     <div className="container">
     <div><button className="btn btn--rect btn--green" onClick={props.showInputs}>save</button></div>
-    <input onChange={props.inputName} value={props.name} maxLength='50'/>
-    <input onChange={props.inputMail} value={props.email} maxLength='50' type="email"/>
-    <input onChange={props.inputRole} value={props.role} maxLength='50'/>
+    <input onChange={props.inputName} onKeyUp={props.keyUpName} value={props.name} maxLength='50'/>
+    <input onChange={props.inputMail} onKeyUp={props.keyUpMail} value={props.email} maxLength='50' type="email"/>
+    <input onChange={props.inputRole} onKeyUp={props.keyUpRole}  value={props.role} maxLength='50'/>
     <div><button className="btn btn--red" onClick={props.click}>-</button></div>
     </div> :    <div className="container">
     <div><button className="btn btn--rect btn--dark-gray" onClick={props.showInputs}>edit</button></div>

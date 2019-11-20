@@ -7,7 +7,9 @@
 }
 
 html{
-    font-size: 62.5% //10px
+    font-size: 62.5%; //10px
+    background: rgb(2,0,36);
+    background: linear-gradient(120deg, rgba(2,0,36,1) 0%, rgba(168,201,184,1) 0%, rgba(236,240,241,1) 100%);
 }
 
 body{
@@ -16,20 +18,17 @@ body{
 }
 
 input{
-    margin: 0;
+    margin: 0 0 0 35%;
     width: 65%;
+    height: 50%;
     font-size: 1.5rem;
+    background-color: #ecf0f1;
 }
 .container{
     display: grid;
     grid-template-columns: 1fr 5fr 5fr 5fr 1fr;
     grid-template-rows: 1fr;
     width: 100%;
-}
-.text{
-    margin: 0 5rem 0 5rem;
-    width: 65%;
-    font-size: 1.5rem;
 }
 
 .filler{

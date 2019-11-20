@@ -1,4 +1,22 @@
 # React Team Builder
+Create, edit and export your custom team.
+
+## Built With
+
+* [React](https://reactjs.org) Bootstrapped with Create React App
+* [jsPDF](https://github.com/MrRio/jsPDF) Export pdf with jsPDF.
+* [SASS](https://getbootstrap.com/docs/4.3/getting-started/introduction/) Custom SCSS styling.
+
+## Versioning
+
+* [Git](https://git-scm.com) is used for version control.
+
+## Authors
+
+* **Nicolás Leiva Büchi** - [nicolasleivab](https://github.com/nicolasleivab)
+<br /><br />
+<p align="center"><a href="https://react-team-builder.netlify.com/">Demo</a></p>
+<br /><br />
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

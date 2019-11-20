@@ -11,10 +11,10 @@ const person = (props) => {
     <div><button className="btn btn--red" onClick={props.click}>-</button></div>
     </div> :    <div className="container">
     <div><button className="btn btn--rect btn--dark-gray" onClick={props.showInputs}>edit</button></div>
-    <div className="text">{props.name}</div>
-    <div className="text">{props.email}</div>
-    <div className="text">{props.role}</div>
-    <div><button className="btn btn--red" onClick={props.click}>-</button></div>
+    <div>{props.name}</div>
+    <div>{props.email}</div>
+    <div>{props.role}</div>
+    <div><button className="btn btn--red" onClick={props.click} data-toggle="tooltip" title="Delete Member">-</button></div>
     </div>
     }
     

@@ -24,6 +24,10 @@ input{
     font-size: 1.5rem;
     background-color: #ecf0f1;
 }
+
+p{
+    margin: 0 0 0 35%;  
+}
 .container{
     display: grid;
     grid-template-columns: 1fr 5fr 5fr 5fr 1fr;
@@ -33,4 +37,20 @@ input{
 
 .filler{
     width: 8rem;
+}
+
+@media screen and (orientation:portrait) {
+    html{
+        background: linear-gradient(120deg, rgba(168,201,184,1) 0%, rgba(168,201,184,1) 0%, rgba(168,201,184,1) 100%);
+    }
+    .App{
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    }
+    .Person{
+        width: 50rem;
+    }
 }

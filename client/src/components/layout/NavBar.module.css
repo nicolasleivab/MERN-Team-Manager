@@ -1,0 +1,19 @@
+.NavBar {
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  background-color: #66c2ff;
+  box-shadow: 0 2px 3px #777;
+}
+.flexContainer {
+  display: flex;
+  height: 100%;
+  margin-left: 20px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.title {
+  font-size: 2.4rem;
+  margin-left: 7px;
+  color: #333;
+}

@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import Members from '../../components/Members/Members';
+import styles from './Home.module.css';
 
 const Home = props => {
-  return <div></div>;
+  return (
+    <div className={styles.Home}>
+      <Members />
+    </div>
+  );
 };
-
-Home.propTypes = {};
 
 export default Home;

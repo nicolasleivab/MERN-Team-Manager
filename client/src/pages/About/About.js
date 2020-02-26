@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './About.module.css';
-import PropTypes from 'prop-types';
 
 const About = props => {
   return (
@@ -13,7 +12,5 @@ const About = props => {
     </div>
   );
 };
-
-About.propTypes = {};
 
 export default About;

@@ -1,3 +1,25 @@
-.Home {
+.Members {
   padding-top: 100px;
+  grid-column-start: 3;
+}
+.MemberForm {
+  grid-column-start: 2;
+}
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  column-gap: 20px;
+}
+@media only screen and (max-width: 900px) {
+  .gridContainer {
+    grid-template-columns: auto;
+  }
+  .Members {
+    padding-top: 20px;
+    grid-column-start: 1;
+  }
+  .MemberForm {
+    grid-column-start: 1;
+  }
 }

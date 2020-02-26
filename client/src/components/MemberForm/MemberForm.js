@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import MemberContext from '../../context/member/memberContext';
 import styles from './MemberForm.module.css';
 
 const MemberForm = () => {
+  const memberContext = useContext(MemberContext);
+
   const [member, setMember] = useState({
     name: '',
     email: '',
@@ -14,15 +17,31 @@ const MemberForm = () => {
     setMember({ ...member, [e.target.name]: e.target.value });
   };
 
+  const onSubmit = e => {
+    e.preventDefault();
+    //call method from context
+    if (member.role === '') {
+      member.role = 'Developer';
+    }
+    memberContext.addMember(member);
+    //reset form
+    setMember({
+      name: '',
+      email: '',
+      phone: '',
+      role: ''
+    });
+  };
   return (
     <div style={{ paddingTop: 100 }}>
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={onSubmit}>
         <p>Add Team Member</p>
         <input
           type='text'
           placeholder='Name'
           name='name'
           value={name}
+          required='required'
           onChange={onChange}
         />
         <input
@@ -30,6 +49,7 @@ const MemberForm = () => {
           placeholder='Email'
           name='email'
           value={email}
+          required='required'
           onChange={onChange}
         />
         <input

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MemberContext from '../../context/member/memberContext';
 import styles from './MemberItem.module.css';
 
 const MemberItem = ({ member }) => {
+  const memberContext = useContext(MemberContext);
+
   const { id, name, email, phone, role } = member;
   const conditions = [
     'CEO',
@@ -12,6 +15,11 @@ const MemberItem = ({ member }) => {
     'MANAGER',
     'OWNER'
   ];
+
+  const deleteMember = () => {
+    memberContext.deleteMember(member);
+  };
+
   return (
     <div className={styles.cardDark}>
       <div className={styles.flexContainer}>
@@ -26,7 +34,11 @@ const MemberItem = ({ member }) => {
         </div>
         <div className={styles.flexIcon}>
           <button className={styles.btnBlue}>Edit</button>
-          <button className={styles.btnRed} style={{ marginLeft: 7 }}>
+          <button
+            className={styles.btnRed}
+            style={{ marginLeft: 7 }}
+            onClick={deleteMember}
+          >
             Delete
           </button>
         </div>

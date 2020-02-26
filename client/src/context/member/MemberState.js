@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import uuidv4 from 'uuid/v4';
 import MemberContext from './memberContext';
 import memberReducer from './memberReducer';
 import {
@@ -41,8 +41,15 @@ const MemberState = props => {
   const [state, dispatch] = useReducer(memberReducer, initialState);
 
   // Add Member
+  const addMember = member => {
+    member.id = uuidv4();
+    dispatch({ type: ADD_MEMBER, payload: member });
+  };
 
   // Delete Member
+  const deleteMember = member => {
+    dispatch({ type: DELETE_MEMBER, payload: member });
+  };
 
   // Set Current Member
 
@@ -57,7 +64,9 @@ const MemberState = props => {
   return (
     <MemberContext.Provider
       value={{
-        members: state.members
+        members: state.members,
+        addMember,
+        deleteMember
       }}
     >
       {props.children}

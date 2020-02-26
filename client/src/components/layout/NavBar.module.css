@@ -8,6 +8,14 @@
 .flexContainer {
   display: flex;
   height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.titleContainer {
+  display: flex;
+  height: 100%;
+  width: 50%;
   margin-left: 20px;
   align-items: center;
   justify-content: flex-start;
@@ -16,4 +24,23 @@
   font-size: 2.4rem;
   margin-left: 7px;
   color: #333;
+}
+ul {
+  display: flex;
+  height: 100%;
+  width: 50%;
+  margin: 0 10% 0 0;
+  align-items: center;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+ul li {
+  margin-left: 30px;
+}
+.navLink {
+  text-decoration: none;
+  color: #333;
+}
+.navLink:hover {
+  color: #fff;
 }

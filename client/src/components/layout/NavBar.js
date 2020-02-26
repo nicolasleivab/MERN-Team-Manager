@@ -8,7 +8,7 @@ const NavBar = ({ title, icon }) => {
     <div className={styles.NavBar}>
       <div className={styles.flexContainer}>
         <div className={styles.titleContainer}>
-          <i className={icon} style={{ color: '#333' }}></i>
+          <i className={icon} style={{ color: '#fff' }}></i>
           <p className={styles.title}>{title}</p>
         </div>
         <ul>

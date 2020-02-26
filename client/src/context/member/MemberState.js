@@ -17,23 +17,23 @@ const MemberState = props => {
     members: [
       {
         id: 1,
-        role: 'CEO',
-        name: 'Froncio',
-        email: 'froncio@lol.com',
+        role: 'Technical Lead',
+        name: 'Nicolas Leiva',
+        email: 'nicolasleivab@gmail.com',
         phone: '9999999'
       },
       {
         id: 2,
-        role: 'Developer',
+        role: 'Senior SE',
         name: 'Wojak',
-        email: 'sminem@lol.com',
+        email: 'wojak@wojak.com',
         phone: '9799999'
       },
       {
         id: 3,
-        role: 'Developer',
-        name: 'Frojack',
-        email: 'asd2@lol.com',
+        role: 'Junior SE',
+        name: 'Jose',
+        email: 'jose@jose.com',
         phone: '3322223'
       }
     ]

@@ -1,8 +1,2 @@
-.gridContainer {
-  width: 30%;
-  min-width: 450px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
+.Members {
 }

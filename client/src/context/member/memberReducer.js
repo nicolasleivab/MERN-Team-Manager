@@ -7,7 +7,6 @@ import {
   FILTER_MEMBERS,
   CLEAR_FILTER
 } from '../types';
-import { act } from 'react-dom/test-utils';
 
 export default (state, action) => {
   switch (action.type) {
@@ -39,6 +38,19 @@ export default (state, action) => {
       return {
         ...state,
         current: null
+      };
+    case FILTER_MEMBERS:
+      return {
+        ...state,
+        filtered: state.members.filter(member => {
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return member.name.match(regex) || member.email.match(regex);
+        })
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null
       };
     default:
       return state;

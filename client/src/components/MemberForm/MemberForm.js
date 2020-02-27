@@ -1,11 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 import MemberContext from '../../context/member/memberContext';
 import styles from './MemberForm.module.css';
-import { CLEAR_CURRENT } from '../../context/types';
+import { CLEAR_CURRENT, CLEAR_FILTER } from '../../context/types';
 
 const MemberForm = () => {
   const memberContext = useContext(MemberContext);
-  const { addMember, current, clearCurrent, updateMember } = memberContext;
+  const {
+    addMember,
+    current,
+    clearCurrent,
+    updateMember,
+    filtered,
+    filterMembers,
+    clearFilter
+  } = memberContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -41,16 +49,16 @@ const MemberForm = () => {
     //call methods from context conditionally
     if (current !== null) {
       updateMember(member);
+      if (filtered !== null) {
+        updateMember(filtered);
+        filterMembers(filtered.find(el => el.name === member.name).name);
+      }
     } else {
       addMember(member);
+      clearFilter();
     }
     //reset form
-    setMember({
-      name: '',
-      email: '',
-      phone: '',
-      role: ''
-    });
+    clearCurrent();
   };
   return (
     <div style={{ paddingTop: 100 }}>

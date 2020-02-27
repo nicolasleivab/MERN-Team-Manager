@@ -36,7 +36,8 @@ const MemberState = props => {
         email: 'jose@jose.com',
         phone: '3322223'
       }
-    ]
+    ],
+    current: null
   };
   const [state, dispatch] = useReducer(memberReducer, initialState);
 
@@ -52,10 +53,19 @@ const MemberState = props => {
   };
 
   // Set Current Member
+  const setCurrent = member => {
+    dispatch({ type: SET_CURRENT, payload: member });
+  };
 
   // Clear Current Member
+  const clearCurrent = member => {
+    dispatch({ type: CLEAR_CURRENT });
+  };
 
   // Update Member
+  const updateMember = member => {
+    dispatch({ type: UPDATE_MEMBER, payload: member });
+  };
 
   // Filter Members
 
@@ -65,8 +75,12 @@ const MemberState = props => {
     <MemberContext.Provider
       value={{
         members: state.members,
+        current: state.current,
         addMember,
-        deleteMember
+        deleteMember,
+        setCurrent,
+        clearCurrent,
+        updateMember
       }}
     >
       {props.children}

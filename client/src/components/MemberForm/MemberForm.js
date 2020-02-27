@@ -1,9 +1,24 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import MemberContext from '../../context/member/memberContext';
 import styles from './MemberForm.module.css';
+import { CLEAR_CURRENT } from '../../context/types';
 
 const MemberForm = () => {
   const memberContext = useContext(MemberContext);
+  const { addMember, current, clearCurrent, updateMember } = memberContext;
+
+  useEffect(() => {
+    if (current !== null) {
+      setMember(current);
+    } else {
+      setMember({
+        name: '',
+        email: '',
+        phone: '',
+        role: ''
+      });
+    }
+  }, [memberContext, current]);
 
   const [member, setMember] = useState({
     name: '',
@@ -19,11 +34,16 @@ const MemberForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    //call method from context
+    //defaut role
     if (member.role === '') {
       member.role = 'Developer';
     }
-    memberContext.addMember(member);
+    //call methods from context conditionally
+    if (current !== null) {
+      updateMember(member);
+    } else {
+      addMember(member);
+    }
     //reset form
     setMember({
       name: '',
@@ -35,7 +55,7 @@ const MemberForm = () => {
   return (
     <div style={{ paddingTop: 100 }}>
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <p>Add Team Member</p>
+        <p>{current ? 'Edit Team Member' : 'Add Team Member'}</p>
         <input
           type='text'
           placeholder='Name'
@@ -66,9 +86,19 @@ const MemberForm = () => {
           value={role}
           onChange={onChange}
         />
-        <div>
-          <input type='submit' value='Add Member' className={styles.btnBlue} />
-        </div>
+        <input
+          type='submit'
+          value={current ? 'Update Member' : 'Add Member'}
+          className={current ? styles.btnGreen : styles.btnBlue}
+        />
+        {current && (
+          <input
+            type='submit'
+            value='Clear'
+            className={styles.btnGray}
+            onClick={() => clearCurrent()}
+          />
+        )}
       </form>
     </div>
   );

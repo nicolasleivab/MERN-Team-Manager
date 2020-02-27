@@ -4,6 +4,7 @@ import styles from './MemberItem.module.css';
 
 const MemberItem = ({ member }) => {
   const memberContext = useContext(MemberContext);
+  const { deleteMember, setCurrent, clearCurrent } = memberContext;
 
   const { id, name, email, phone, role } = member;
   const conditions = [
@@ -16,8 +17,9 @@ const MemberItem = ({ member }) => {
     'OWNER'
   ];
 
-  const deleteMember = () => {
-    memberContext.deleteMember(member);
+  const removeMember = () => {
+    deleteMember(member);
+    clearCurrent();
   };
 
   return (
@@ -33,11 +35,13 @@ const MemberItem = ({ member }) => {
           <p style={{ fontSize: '1.4rem', marginLeft: 5 }}>{phone}</p>
         </div>
         <div className={styles.flexIcon}>
-          <button className={styles.btnBlue}>Edit</button>
+          <button className={styles.btnBlue} onClick={() => setCurrent(member)}>
+            Edit
+          </button>
           <button
             className={styles.btnRed}
             style={{ marginLeft: 7 }}
-            onClick={deleteMember}
+            onClick={removeMember}
           >
             Delete
           </button>

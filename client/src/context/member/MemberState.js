@@ -54,8 +54,33 @@ const MemberState = props => {
   };
 
   // Delete Member
-  const deleteMember = member => {
-    dispatch({ type: DELETE_MEMBER, payload: member });
+  const deleteMember = async member => {
+    try {
+      await axios.delete(`/api/teamMembers/${member._id}`);
+
+      dispatch({ type: DELETE_MEMBER, payload: member });
+    } catch (err) {
+      dispatch({ type: MEMBER_ERROR, payload: err.response.msg });
+    }
+  };
+
+  // Update Member
+  const updateMember = async member => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    try {
+      const res = await axios.put(
+        `/api/teamMembers/${member._id}`,
+        member,
+        config
+      );
+      dispatch({ type: UPDATE_MEMBER, payload: res.data });
+    } catch (err) {
+      dispatch({ type: MEMBER_ERROR, payload: err.response.msg });
+    }
   };
 
   // Clear Members
@@ -71,11 +96,6 @@ const MemberState = props => {
   // Clear Current Member
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
-  };
-
-  // Update Member
-  const updateMember = member => {
-    dispatch({ type: UPDATE_MEMBER, payload: member });
   };
 
   // Filter Members

@@ -6,7 +6,7 @@ const MemberItem = ({ member }) => {
   const memberContext = useContext(MemberContext);
   const { deleteMember, setCurrent, clearCurrent } = memberContext;
 
-  const { id, name, email, phone, role } = member;
+  const { _id, name, email, phone, role } = member;
   const conditions = [
     'CEO',
     'CTO',
@@ -14,7 +14,8 @@ const MemberItem = ({ member }) => {
     'PRINCIPAL',
     'MAIN',
     'MANAGER',
-    'OWNER'
+    'OWNER',
+    'PRESIDENT'
   ];
 
   const removeMember = () => {

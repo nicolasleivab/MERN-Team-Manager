@@ -1,16 +1,16 @@
-# MERN Team Builder
+# MERN Team Manager
 
 Full stack application for managing teams.
 <br />
 
-<p align="center"><a href="https://react-team-builder.netlify.com/">Demo</a></p>
+<p align="center"><a href="https://mern-team-manager.herokuapp.com">Live</a></p>
 
 ## Built With
 
-React (v16.13.0)
-Node (v10.16.3)
-Express (v4.17.1)
-MongoDB (v4.0.3)
+*React (v16.13.0)
+*Node (v10.16.3)
+*Express (v4.17.1)
+*MongoDB (v4.0.3)
 
 ## Versioning
 
@@ -19,6 +19,8 @@ MongoDB (v4.0.3)
 ## Authors
 
 - **Nicolás Leiva Büchi** - [nicolasleivab](https://github.com/nicolasleivab)
+
+---
 
 #### How to run this code
 

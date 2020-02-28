@@ -22,14 +22,14 @@ export default (state, action) => {
     case ADD_MEMBER:
       return {
         ...state,
-        members: [...state.members, action.payload],
+        members: [action.payload, ...state.members],
         loading: false
       };
     case UPDATE_MEMBER:
       return {
         ...state,
         members: state.members.map(member =>
-          member.id === action.payload.id ? action.payload : member
+          member._id === action.payload._id ? action.payload : member
         ),
         loading: false
       };
@@ -37,7 +37,7 @@ export default (state, action) => {
       return {
         ...state,
         members: [
-          ...state.members.filter(member => member.id !== action.payload.id)
+          ...state.members.filter(member => member._id !== action.payload._id)
         ],
         loading: false
       };

@@ -31,7 +31,7 @@ const Register = () => {
         />
         <label htmlFor='password'>{password !== '' && 'Password'}</label>
         <input
-          type='text'
+          type='password'
           placeholder='Password'
           name='password'
           value={password}

@@ -26,3 +26,35 @@ label {
 .btnGray:active {
   box-shadow: 0 0 #ccc;
 }
+.alertContainerRed {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 145px;
+  background-color: rgb(255, 102, 102, 0.75);
+  width: fit-content;
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.alertContainerGreen {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 145px;
+  background-color: rgb(0, 153, 51, 0.7);
+  width: fit-content;
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.alertTextGray {
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #555;
+}
+.alertTextWhite {
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #fff;
+}

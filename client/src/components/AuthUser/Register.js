@@ -1,7 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
+import Alert from './Alert';
 import styles from './Register.module.css';
 
-const Register = () => {
+const Register = props => {
+  const alertContext = useContext(AlertContext);
+  const authtContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+  const { registerUser, error, clearErrors, isAuthenticated } = authtContext;
+
+  useEffect(
+    () => {
+      if (isAuthenticated) {
+        props.history.push('/');
+      }
+      if (error === 'User already exists') {
+        setAlert(error, 'Red');
+        clearErrors();
+      }
+      // eslint-disable-next-line
+    },
+    [error, isAuthenticated],
+    props.history
+  );
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -15,13 +40,20 @@ const Register = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(user);
+    if (name === '' || email === '' || password === '' || password2 === '') {
+      setAlert('Missing Fields', 'Red');
+    } else if (password !== password2) {
+      setAlert('Passwords do not match', 'Red');
+    } else {
+      registerUser(user);
+    }
   };
 
   return (
     <div>
       <p className={styles.title}>Account Register</p>
       <form className={styles.formContainer} onSubmit={onSubmit}>
+        <Alert />
         <label htmlFor='name'>{name !== '' && 'Name'}</label>
         <input
           type='text'
@@ -42,23 +74,25 @@ const Register = () => {
         />
         <label htmlFor='password'>{password !== '' && 'Password'}</label>
         <input
-          type='text'
+          type='password'
           placeholder='Password'
           name='password'
           value={password}
           required='required'
           onChange={onChange}
+          minLength='6'
         />
         <label htmlFor='password2'>
           {password2 !== '' && 'Confirm Password'}
         </label>
         <input
-          type='text'
+          type='password'
           placeholder='Confirm Password'
           name='password2'
           value={password2}
           required='required'
           onChange={onChange}
+          minLength='6'
         />
         <input type='submit' value='Register' className={styles.btnGray} />
       </form>

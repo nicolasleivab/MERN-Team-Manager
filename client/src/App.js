@@ -7,25 +7,33 @@ import Register from './components/AuthUser/Register';
 import Login from './components/AuthUser/Login';
 import MemberState from './context/member/MemberState';
 import AuthState from './context/auth/AuthState';
+import AlertState from './context/alert/AlertState';
+import setAuthToken from './utils/setAuthToken';
 import './App.css';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
   return (
     <AuthState>
       <MemberState>
-        <Router>
-          <Fragment>
-            <NavBar />
-            <div className='container'>
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/about' component={About} />
-                <Route exact path='/register' component={Register} />
-                <Route exact path='/login' component={Login} />
-              </Switch>
-            </div>
-          </Fragment>
-        </Router>
+        <AlertState>
+          <Router>
+            <Fragment>
+              <NavBar />
+              <div style={{ width: '100%' }}>
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route exact path='/about' component={About} />
+                  <Route exact path='/register' component={Register} />
+                  <Route exact path='/login' component={Login} />
+                </Switch>
+              </div>
+            </Fragment>
+          </Router>
+        </AlertState>
       </MemberState>
     </AuthState>
   );

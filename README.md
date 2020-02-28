@@ -7,10 +7,10 @@ Full stack application for managing teams.
 
 ## Built With
 
-*React (v16.13.0)
-*Node (v10.16.3)
-*Express (v4.17.1)
-*MongoDB (v4.0.3)
+- React (v16.13.0)
+- Node (v10.16.3)
+- Express (v4.17.1)
+- MongoDB (v4.0.3)
 
 ## Versioning
 

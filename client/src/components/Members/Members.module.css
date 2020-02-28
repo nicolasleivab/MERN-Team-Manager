@@ -12,3 +12,7 @@
   border: none;
   box-shadow: 3px 5px 10px #ccc;
 }
+.alertText {
+  color: #555;
+  font-style: italic;
+}

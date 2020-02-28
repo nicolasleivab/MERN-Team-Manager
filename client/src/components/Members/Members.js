@@ -27,9 +27,11 @@ const Members = props => {
             : members.map(member => (
                 <MemberItem member={member} key={member._id} />
               ))}
-          {members.length === 0 && <p>Please add a member</p>}
+          {members.length === 0 && (
+            <p className={styles.alertText}>Please add a member</p>
+          )}
           {filtered !== null && filtered.length === 0 && (
-            <p>No match found...</p>
+            <p className={styles.alertText}>No match found...</p>
           )}
         </div>
       ) : (

@@ -1,9 +1,12 @@
 import React, { useReducer } from 'react';
-import uuidv4 from 'uuid/v4';
 import MemberContext from './memberContext';
 import memberReducer from './memberReducer';
+import axios from 'axios';
 import {
+  GET_MEMBERS,
+  CLEAR_MEMBERS,
   ADD_MEMBER,
+  MEMBER_ERROR,
   DELETE_MEMBER,
   SET_CURRENT,
   CLEAR_CURRENT,
@@ -14,43 +17,50 @@ import {
 
 const MemberState = props => {
   const initialState = {
-    members: [
-      {
-        id: 1,
-        role: 'Technical Lead',
-        name: 'Nicolas Leiva',
-        email: 'nicolasleivab@gmail.com',
-        phone: '9999999'
-      },
-      {
-        id: 2,
-        role: 'Senior SE',
-        name: 'Wojak',
-        email: 'wojak@wojak.com',
-        phone: '9799999'
-      },
-      {
-        id: 3,
-        role: 'Junior SE',
-        name: 'Jose',
-        email: 'jose@jose.com',
-        phone: '3322223'
-      }
-    ],
+    members: null,
     current: null,
-    filtered: null
+    filtered: null,
+    error: null,
+    loading: true
   };
   const [state, dispatch] = useReducer(memberReducer, initialState);
 
+  // Get Members
+  const getMembers = async () => {
+    try {
+      const res = await axios.get('/api/teamMembers');
+
+      dispatch({
+        type: GET_MEMBERS,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({ type: MEMBER_ERROR, payload: err.response.msg });
+    }
+  };
   // Add Member
-  const addMember = member => {
-    member.id = uuidv4();
-    dispatch({ type: ADD_MEMBER, payload: member });
+  const addMember = async member => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    try {
+      const res = await axios.post('/api/teamMembers', member, config);
+      dispatch({ type: ADD_MEMBER, payload: res.data });
+    } catch (err) {
+      dispatch({ type: MEMBER_ERROR, payload: err.response.msg });
+    }
   };
 
   // Delete Member
   const deleteMember = member => {
     dispatch({ type: DELETE_MEMBER, payload: member });
+  };
+
+  // Clear Members
+  const clearMembers = () => {
+    dispatch({ type: CLEAR_MEMBERS });
   };
 
   // Set Current Member
@@ -84,13 +94,17 @@ const MemberState = props => {
         members: state.members,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
+        loading: state.loading,
+        getMembers,
         addMember,
         deleteMember,
         setCurrent,
         clearCurrent,
         updateMember,
         filterMembers,
-        clearFilter
+        clearFilter,
+        clearMembers
       }}
     >
       {props.children}

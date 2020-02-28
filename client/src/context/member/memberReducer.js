@@ -1,33 +1,53 @@
 import {
+  GET_MEMBERS,
   ADD_MEMBER,
+  MEMBER_ERROR,
   DELETE_MEMBER,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_MEMBER,
   FILTER_MEMBERS,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  CLEAR_MEMBERS
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_MEMBERS:
+      return {
+        ...state,
+        members: action.payload,
+        loading: false
+      };
     case ADD_MEMBER:
       return {
         ...state,
-        members: [...state.members, action.payload]
+        members: [...state.members, action.payload],
+        loading: false
       };
     case UPDATE_MEMBER:
       return {
         ...state,
         members: state.members.map(member =>
           member.id === action.payload.id ? action.payload : member
-        )
+        ),
+        loading: false
       };
     case DELETE_MEMBER:
       return {
         ...state,
         members: [
           ...state.members.filter(member => member.id !== action.payload.id)
-        ]
+        ],
+        loading: false
+      };
+    case CLEAR_MEMBERS:
+      return {
+        ...state,
+        members: [],
+        filtered: null,
+        error: null,
+        current: null
       };
     case SET_CURRENT:
       return {
@@ -51,6 +71,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: null
+      };
+    case MEMBER_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;

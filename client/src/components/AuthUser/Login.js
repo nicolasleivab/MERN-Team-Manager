@@ -1,7 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
+import Alert from './Alert';
 import styles from './Register.module.css';
 
-const Register = () => {
+const Register = props => {
+  const alertContext = useContext(AlertContext);
+  const authtContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+  const { loginUser, error, clearErrors, isAuthenticated } = authtContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+    if (error === 'Invalid Credentials') {
+      setAlert(error, 'Red');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
+
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -13,13 +33,18 @@ const Register = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(user);
+    if (email === '' || password === '') {
+      setAlert('Please fill out all fields', 'Red');
+    } else {
+      loginUser(user);
+    }
   };
 
   return (
     <div>
       <p className={styles.title}>Account Login</p>
       <form className={styles.formContainer} onSubmit={onSubmit}>
+        <Alert />
         <label htmlFor='email'>{email !== '' && 'Email'}</label>
         <input
           type='email'

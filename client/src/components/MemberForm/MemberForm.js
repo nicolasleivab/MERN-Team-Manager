@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import MemberContext from '../../context/member/memberContext';
 import styles from './MemberForm.module.css';
-import { CLEAR_CURRENT, CLEAR_FILTER } from '../../context/types';
 
 const MemberForm = () => {
   const memberContext = useContext(MemberContext);

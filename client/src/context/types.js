@@ -1,4 +1,7 @@
+export const GET_MEMBERS = 'GET_MEMBERS';
+export const CLEAR_MEMBERS = 'CLEAR_MEMBERS';
 export const ADD_MEMBER = 'ADD_MEMBER';
+export const MEMBER_ERROR = 'MEMBER_ERROR';
 export const DELETE_MEMBER = 'DELETE_MEMBER';
 export const SET_CURRENT = 'SET_CURRENT';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';

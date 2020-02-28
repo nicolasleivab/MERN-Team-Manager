@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 import Alert from './Alert';
@@ -12,20 +11,16 @@ const Register = props => {
   const { setAlert } = alertContext;
   const { registerUser, error, clearErrors, isAuthenticated } = authtContext;
 
-  useEffect(
-    () => {
-      if (isAuthenticated) {
-        props.history.push('/');
-      }
-      if (error === 'User already exists') {
-        setAlert(error, 'Red');
-        clearErrors();
-      }
-      // eslint-disable-next-line
-    },
-    [error, isAuthenticated],
-    props.history
-  );
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+    if (error === 'User already exists') {
+      setAlert(error, 'Red');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, props.history]);
 
   const [user, setUser] = useState({
     name: '',

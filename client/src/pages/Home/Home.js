@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import Members from '../../components/Members/Members';
 import MemberForm from '../../components/MemberForm/MemberForm';
 import styles from './Home.module.css';
-import MemberItem from '../../components/MemberItem/MemberItem';
+import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
+  const authContext = useContext(AuthContext);
+
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
+  if (!authContext.isAuthenticated) {
+    return <Fragment></Fragment>;
+  }
   return (
     <div className={styles.gridContainer}>
       <div className={styles.MemberForm}>

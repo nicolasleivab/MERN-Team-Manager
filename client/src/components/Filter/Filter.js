@@ -10,7 +10,7 @@ const Filter = () => {
     if (filtered === null) {
       setText('');
     }
-  });
+  }, [filtered]);
 
   const onChange = e => {
     setText(e.target.value);

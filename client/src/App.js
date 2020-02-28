@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavBar from './components/layout/NavBar';
 import Home from './pages/Home/Home';
-import About from './pages/About/About';
 import Register from './components/AuthUser/Register';
 import Login from './components/AuthUser/Login';
+import PrivateRoute from './routing/PrivateRouting';
 import MemberState from './context/member/MemberState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
@@ -25,8 +25,7 @@ function App() {
               <NavBar />
               <div style={{ width: '100%' }}>
                 <Switch>
-                  <Route exact path='/' component={Home} />
-                  <Route exact path='/about' component={About} />
+                  <PrivateRoute exact path='/' component={Home} />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />
                 </Switch>

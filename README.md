@@ -1,23 +1,38 @@
-# React Team Builder
-Create, edit and export your custom team.
+# MERN Team Builder
+
+Full stack application for managing teams.
 <br />
+
 <p align="center"><a href="https://react-team-builder.netlify.com/">Demo</a></p>
 
 ## Built With
 
-* [React](https://reactjs.org) Bootstrapped with Create React App
-* [jsPDF](https://github.com/MrRio/jsPDF) Export pdf with jsPDF.
-* [SASS](https://getbootstrap.com/docs/4.3/getting-started/introduction/) Custom SCSS styling.
+React (v16.13.0)
+Node (v10.16.3)
+Express (v4.17.1)
+MongoDB (v4.0.3)
 
 ## Versioning
 
-* [Git](https://git-scm.com) is used for version control.
+- [Git](https://git-scm.com) is used for version control.
 
 ## Authors
 
-* **Nicolás Leiva Büchi** - [nicolasleivab](https://github.com/nicolasleivab)
+- **Nicolás Leiva Büchi** - [nicolasleivab](https://github.com/nicolasleivab)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### How to run this code
+
+1. Make sure MongoDB is running on your system or connect to MongoDB Atlas
+2. Clone this repository
+3. Add config/config.js or default.json with your test values for Stripe API keys and Stripe Connect Client ID
+4. Open command line in the cloned folder,
+   - To install dependencies, run `npm install`
+   - To run the application for development, run `npm run dev`
+5. Open [localhost:3000](http://localhost:3000/) in the browser
+
+---
+
+Client side was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

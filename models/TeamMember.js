@@ -20,6 +20,10 @@ const TeamMemberSchema = mongoose.Schema({
     type: String,
     default: 'Developer'
   },
+  team: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now

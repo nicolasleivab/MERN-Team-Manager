@@ -30,6 +30,9 @@ router.post(
     [
       check('name', 'Name is required')
         .not()
+        .isEmpty(),
+      check('team', 'Team is required')
+        .not()
         .isEmpty()
     ]
   ],
@@ -38,7 +41,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ erros: errors.array() });
     }
-    const { name, email, phone, role } = req.body;
+    const { name, email, phone, role, team } = req.body;
 
     try {
       const newTeamMember = new TeamMember({
@@ -46,6 +49,7 @@ router.post(
         email,
         phone,
         role,
+        team,
         user: req.user.id
       });
 
@@ -66,7 +70,7 @@ router.put('/:id', auth, async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { name, email, phone, role } = req.body;
+  const { name, email, phone, role, team } = req.body;
 
   // Build member object
   const memberFields = {};
@@ -74,6 +78,7 @@ router.put('/:id', auth, async (req, res) => {
   if (email) memberFields.email = email;
   if (phone) memberFields.phone = phone;
   if (role) memberFields.role = role;
+  if (team) memberFields.team = team;
 
   try {
     let teamMember = await TeamMember.findById(req.params.id);

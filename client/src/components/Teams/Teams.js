@@ -1,13 +1,12 @@
 import React, { Fragment, useContext, useEffect } from 'react';
-import MemberContext from '../../context/member/memberContext';
-import MemberItem from '../MemberItem/MemberItem';
+import TeamContext from '../../context/team/teamContext';
 
 import React from 'react';
 
 const Teams = () => {
   const memberContext = useContext(MemberContext);
 
-  const { members, filtered, getMembers, loading } = memberContext;
+  const { teams, getTeams } = memberContext;
 
   useEffect(() => {
     //getTeams();

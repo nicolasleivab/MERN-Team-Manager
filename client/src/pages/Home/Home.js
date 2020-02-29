@@ -17,12 +17,14 @@ const Home = () => {
   }
   return (
     <div className={styles.gridContainer}>
+      <div>
+        <Teams />
+      </div>
       <div className={styles.MemberForm}>
         <MemberForm />
       </div>
       <div className={styles.Members}>
         <Members />
-        <Teams />
       </div>
     </div>
   );

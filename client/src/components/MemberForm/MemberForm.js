@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import MemberContext from '../../context/member/memberContext';
+import TeamContext from '../../context/team/teamContext';
 import styles from './MemberForm.module.css';
 
 const MemberForm = () => {
   const memberContext = useContext(MemberContext);
+  const teamContext = useContext(TeamContext);
+
   const {
     addMember,
     current,
@@ -14,6 +17,8 @@ const MemberForm = () => {
     clearFilter
   } = memberContext;
 
+  const { currentTeam } = teamContext;
+
   useEffect(() => {
     if (current !== null) {
       setMember(current);
@@ -22,7 +27,8 @@ const MemberForm = () => {
         name: '',
         email: '',
         phone: '',
-        role: ''
+        role: '',
+        team: ''
       });
     }
   }, [memberContext, current]);
@@ -31,9 +37,10 @@ const MemberForm = () => {
     name: '',
     email: '',
     phone: '',
-    role: ''
+    role: '',
+    team: ''
   });
-  const { name, email, phone, role } = member;
+  const { name, email, phone, role, team } = member;
 
   const onChange = e => {
     setMember({ ...member, [e.target.name]: e.target.value });
@@ -41,6 +48,8 @@ const MemberForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    //assign current team
+    member.team = currentTeam.name;
     //defaut role
     if (member.role === '') {
       member.role = 'Developer';

@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import MemberContext from '../../context/member/memberContext';
 import TeamContext from '../../context/team/teamContext';
 import MemberItem from '../MemberItem/MemberItem';
@@ -13,17 +13,24 @@ const Members = props => {
   const { members, filtered, getMembers, loading } = memberContext;
   const { currentTeam } = teamContext;
 
+  const [membersByTeam, setMembersByTeam] = useState([]);
+
   useEffect(() => {
     getMembers();
+    // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
     //filter membrs by current team
     if (currentTeam !== null && members !== null) {
       const filteredMem = members.filter(
         member => member.team !== currentTeam.name
       );
       console.log(filteredMem);
+      setMembersByTeam(filteredMem);
     }
     // eslint-disable-next-line
-  }, [currentTeam]);
+  }, [currentTeam, members]);
 
   return (
     <Fragment>
@@ -34,10 +41,10 @@ const Members = props => {
             ? filtered.map(member => (
                 <MemberItem member={member} key={member._id} />
               ))
-            : members.map(member => (
+            : membersByTeam.map(member => (
                 <MemberItem member={member} key={member._id} />
               ))}
-          {members.length === 0 && (
+          {membersByTeam.length === 0 && (
             <p className={styles.alertText}>Please add a member</p>
           )}
           {filtered !== null && filtered.length === 0 && (

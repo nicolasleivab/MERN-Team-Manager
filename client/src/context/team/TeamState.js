@@ -15,8 +15,8 @@ import {
 
 const TeamState = props => {
   const initialState = {
-    teams: null,
-    current: null,
+    teams: [],
+    currentTeam: null,
     error: null,
     loading: true
   };
@@ -95,7 +95,7 @@ const TeamState = props => {
     <TeamContext.Provider
       value={{
         teams: state.teams,
-        current: state.current,
+        currentTeam: state.currentTeam,
         error: state.error,
         loading: state.loading,
         getTeams,

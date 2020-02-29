@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, Fragment } from 'react';
 import Members from '../../components/Members/Members';
+import Teams from '../../components/Teams/Teams';
 import MemberForm from '../../components/MemberForm/MemberForm';
 import styles from './Home.module.css';
 import AuthContext from '../../context/auth/authContext';
@@ -21,6 +22,7 @@ const Home = () => {
       </div>
       <div className={styles.Members}>
         <Members />
+        <Teams />
       </div>
     </div>
   );

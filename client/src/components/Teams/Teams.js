@@ -1,18 +1,27 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import TeamContext from '../../context/team/teamContext';
 
-import React from 'react';
-
 const Teams = () => {
-  const memberContext = useContext(MemberContext);
+  const teamContext = useContext(TeamContext);
 
-  const { teams, getTeams } = memberContext;
+  const { teams, getTeams, setCurrentTeam } = teamContext;
 
   useEffect(() => {
-    //getTeams();
+    getTeams();
+
     // eslint-disable-next-line
   }, []);
-  return <div></div>;
+  useEffect(() => {
+    if (teams.length > 0) {
+      setCurrentTeam(teams[0]);
+    }
+  }, [teams]);
+
+  return (
+    <Fragment>
+      {teams.length > 0 && teams.map(team => <p>{team.name}</p>)}
+    </Fragment>
+  );
 };
 
 export default Teams;

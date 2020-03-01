@@ -24,12 +24,11 @@ const Members = props => {
     //filter membrs by current team
     if (currentTeam !== null && members !== null) {
       const filteredMem = members.filter(
-        member => member.team !== currentTeam.name
+        member => member.team === currentTeam._id
       );
       console.log(filteredMem);
       setMembersByTeam(filteredMem);
     }
-    // eslint-disable-next-line
   }, [currentTeam, members]);
 
   return (

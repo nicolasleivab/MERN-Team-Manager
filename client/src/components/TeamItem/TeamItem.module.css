@@ -1,0 +1,9 @@
+.TeamItem {
+  margin-top: 5px;
+}
+.TeamItem a {
+  text-decoration: none;
+}
+.TeamItem a:active {
+  text-decoration: underline;
+}

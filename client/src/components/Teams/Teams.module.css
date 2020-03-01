@@ -1,0 +1,31 @@
+.btnBlue {
+  background-color: #003d66;
+  padding: 5px;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+}
+.btnGreen {
+  background-color: #009933;
+  padding: 5px;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+}
+.btnGray {
+  padding: 5px;
+  color: #555;
+  border-radius: 3px;
+}
+
+.btnBlue:active,
+.btnGreen:active,
+.btnGray:active {
+  box-shadow: 0 0 #ccc;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -49,7 +49,7 @@ const MemberForm = () => {
   const onSubmit = e => {
     e.preventDefault();
     //assign current team
-    member.team = currentTeam.name;
+    member.team = currentTeam._id;
     //defaut role
     if (member.role === '') {
       member.role = 'Developer';

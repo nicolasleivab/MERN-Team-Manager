@@ -1,9 +1,12 @@
 .TeamItem {
   margin-top: 5px;
 }
-.TeamItem a {
-  text-decoration: none;
-}
-.TeamItem a:active {
+
+.activeTeam {
   text-decoration: underline;
+  color: aqua;
+}
+.inactiveTeam {
+  text-decoration: none;
+  color: blue;
 }

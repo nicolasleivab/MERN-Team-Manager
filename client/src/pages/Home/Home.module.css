@@ -1,21 +1,21 @@
 .Members {
   padding-top: 100px;
 }
-
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   column-gap: 20px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   .gridContainer {
     grid-template-columns: auto;
   }
   .Members {
-    padding-top: 20px;
+    padding-top: 50px;
   }
   .MemberForm {
+    margin-top: -50px;
   }
 }
 .alertText {

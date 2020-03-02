@@ -4,17 +4,21 @@ import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import AuthContext from '../../context/auth/authContext';
 import MemberContext from '../../context/member/memberContext';
+import TeamContext from '../../context/team/teamContext';
 
 const NavBar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
   const memberContext = useContext(MemberContext);
+  const teamContext = useContext(TeamContext);
 
   const { isAuthenticated, logoutUser, user } = authContext;
   const { clearMembers } = memberContext;
+  const { clearTeams } = teamContext;
 
   const onLogout = () => {
     logoutUser();
     clearMembers();
+    clearTeams();
   };
 
   const authLinks = (

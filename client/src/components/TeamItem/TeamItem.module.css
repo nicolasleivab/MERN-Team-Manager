@@ -1,5 +1,9 @@
 .TeamItem {
-  margin-top: 5px;
+  margin-top: 10px;
+}
+.TeamItem i {
+  margin-left: 15px;
+  cursor: pointer;
 }
 
 .activeTeam {

@@ -11,7 +11,9 @@ const Teams = props => {
     getTeams,
     setCurrentTeam,
     clearCurrentTeam,
-    addTeam
+    addTeam,
+    currentTeam,
+    updateTeam
   } = teamContext;
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const Teams = props => {
   const [team, setTeam] = useState({
     name: ''
   });
+  const [editting, setEdit] = useState(false);
 
   const { name } = team;
 
@@ -37,10 +40,28 @@ const Teams = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-
-    addTeam(team);
+    if (editting) {
+      updateTeam(team);
+    } else {
+      addTeam(team);
+    }
     setCurrentTeam(team);
+
+    setTeam({ name: '' });
+    setEdit(false);
   };
+
+  const editTeam = () => {
+    setTeam(currentTeam);
+    setEdit(true);
+  };
+
+  const clearTeamEdit = () => {
+    setTeam({ name: '' });
+    setEdit(false);
+  };
+
+  const deleteTeam = () => {};
 
   return (
     <div style={{ paddingTop: 100 }}>
@@ -54,19 +75,30 @@ const Teams = props => {
           required='required'
           onChange={onChange}
         />
-        <input type='submit' value={'Add Team'} className={styles.btnBlue} />
-        {/*current && (
-            <input
-              type='submit'
-              value='Clear'
-              className={styles.btnGray}
-              onClick={() => clearCurrentTeam()}
-            />
-          )*/}
+        <input
+          type='submit'
+          value={editting ? 'Update' : 'Add Team'}
+          className={editting ? styles.btnGreen : styles.btnBlue}
+        />
+        {editting && (
+          <input
+            type='submit'
+            value='Clear'
+            className={styles.btnGray}
+            onClick={clearTeamEdit}
+          />
+        )}
       </form>
       <div className={styles.formContainer}>
         {teams.length > 0 &&
-          teams.map(team => <TeamItem team={team} key={team._id} />)}
+          teams.map(team => (
+            <TeamItem
+              team={team}
+              key={team._id}
+              editTeam={editTeam}
+              deleteTeam={deleteTeam}
+            />
+          ))}
       </div>
     </div>
   );

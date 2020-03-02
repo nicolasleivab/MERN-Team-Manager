@@ -1,8 +1,7 @@
 .Members {
   padding-top: 100px;
 }
-.MemberForm {
-}
+
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -18,4 +17,13 @@
   }
   .MemberForm {
   }
+}
+.alertText {
+  color: #555;
+  font-style: italic;
+}
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

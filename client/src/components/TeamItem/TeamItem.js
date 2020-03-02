@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, Fragment } from 'react';
 import TeamContext from '../../context/team/teamContext';
 import styles from './TeamItem.module.css';
 
-const TeamItem = ({ team, editTeam, deleteTeam }) => {
+const TeamItem = ({ team, editTeam, removeTeam }) => {
   const teamContext = useContext(TeamContext);
 
   const { setCurrentTeam, currentTeam } = teamContext;
@@ -33,7 +33,7 @@ const TeamItem = ({ team, editTeam, deleteTeam }) => {
       {_id === isActive && (
         <Fragment>
           <i className='fa fa-edit' onClick={editTeam}></i>
-          <i className='fa fa-trash' onClick={deleteTeam}></i>
+          <i className='fa fa-trash' onClick={removeTeam}></i>
         </Fragment>
       )}
     </div>

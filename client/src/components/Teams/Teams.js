@@ -1,10 +1,12 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import TeamContext from '../../context/team/teamContext';
+import MemberContext from '../../context/member/memberContext';
 import TeamItem from '../../components/TeamItem/TeamItem';
 import styles from './Teams.module.css';
 
 const Teams = props => {
   const teamContext = useContext(TeamContext);
+  const memberContext = useContext(MemberContext);
 
   const {
     teams,
@@ -13,8 +15,11 @@ const Teams = props => {
     clearCurrentTeam,
     addTeam,
     currentTeam,
-    updateTeam
+    updateTeam,
+    deleteTeam
   } = teamContext;
+
+  const { members, deleteMember } = memberContext;
 
   useEffect(() => {
     getTeams();
@@ -61,7 +66,13 @@ const Teams = props => {
     setEdit(false);
   };
 
-  const deleteTeam = () => {};
+  const removeTeam = () => {
+    deleteTeam(currentTeam);
+    members.map(
+      member => member.team === currentTeam._id && deleteMember(member)
+    );
+    setCurrentTeam(teams[0]);
+  };
 
   return (
     <div style={{ paddingTop: 100 }}>
@@ -96,7 +107,7 @@ const Teams = props => {
               team={team}
               key={team._id}
               editTeam={editTeam}
-              deleteTeam={deleteTeam}
+              removeTeam={removeTeam}
             />
           ))}
       </div>

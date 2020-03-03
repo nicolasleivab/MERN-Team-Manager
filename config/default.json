@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://nicolasleivab:Nutria17@team-manager-nbdgr.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "tokenSecretPassword"
+}

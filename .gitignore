@@ -3,10 +3,32 @@
 # dependencies
 /node_modules
 /client/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/config/default.json
 
 npm-debug.log*
 yarn-debug.log*
+<<<<<<< HEAD
 yarn-error.log*
 
 /config/default.json
 /config/production.json
+||||||| parent of 56e5c00... TeamItem conditional render and minor fixes
+yarn-error.log*
+=======
+yarn-error.log*
+>>>>>>> 56e5c00... TeamItem conditional render and minor fixes

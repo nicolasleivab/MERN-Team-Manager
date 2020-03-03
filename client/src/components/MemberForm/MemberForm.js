@@ -40,7 +40,7 @@ const MemberForm = () => {
     role: '',
     team: ''
   });
-  const { name, email, phone, role, team } = member;
+  const { name, email, phone, role } = member;
 
   const onChange = e => {
     setMember({ ...member, [e.target.name]: e.target.value });
@@ -79,6 +79,7 @@ const MemberForm = () => {
           value={name}
           required='required'
           onChange={onChange}
+          maxLength={35}
         />
         <input
           type='email'
@@ -87,6 +88,7 @@ const MemberForm = () => {
           value={email}
           required='required'
           onChange={onChange}
+          maxLength={35}
         />
         <input
           type='text'
@@ -94,6 +96,7 @@ const MemberForm = () => {
           name='phone'
           value={phone}
           onChange={onChange}
+          maxLength={35}
         />
         <input
           type='text'
@@ -101,6 +104,7 @@ const MemberForm = () => {
           name='role'
           value={role}
           onChange={onChange}
+          maxLength={35}
         />
         <input
           type='submit'

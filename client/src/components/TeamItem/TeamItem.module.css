@@ -1,5 +1,12 @@
 .TeamItem {
-  margin-top: 10px;
+  max-width: 400px;
+  min-width: 200px;
+  padding: 10px;
+  width: fit-content;
+  border-bottom: solid 1px #555;
+}
+.TeamItem:first-child {
+  border-top: solid 1px #555;
 }
 .TeamItem i {
   margin-left: 15px;
@@ -7,10 +14,10 @@
 }
 
 .activeTeam {
-  text-decoration: underline;
-  color: aqua;
+  color: #0000cc;
+  text-decoration: none;
 }
 .inactiveTeam {
   text-decoration: none;
-  color: blue;
+  color: #99b3e6;
 }

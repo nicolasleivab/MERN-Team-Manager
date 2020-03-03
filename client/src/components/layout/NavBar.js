@@ -30,7 +30,7 @@ const NavBar = ({ title, icon }) => {
             className='fa fa-sign-out'
             style={{ color: '#fff', marginRight: 5 }}
           ></i>
-          Logout
+          <span className={styles.hide}>Logout</span>
         </a>
       </li>
     </Fragment>

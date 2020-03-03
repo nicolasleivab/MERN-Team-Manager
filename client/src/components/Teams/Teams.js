@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import TeamContext from '../../context/team/teamContext';
 import MemberContext from '../../context/member/memberContext';
 import TeamItem from '../../components/TeamItem/TeamItem';
@@ -12,7 +12,6 @@ const Teams = props => {
     teams,
     getTeams,
     setCurrentTeam,
-    clearCurrentTeam,
     addTeam,
     currentTeam,
     updateTeam,
@@ -30,6 +29,7 @@ const Teams = props => {
     if (teams.length > 0) {
       setCurrentTeam(teams[0]);
     }
+    // eslint-disable-next-line
   }, [teams]);
 
   const [team, setTeam] = useState({
@@ -77,7 +77,7 @@ const Teams = props => {
   return (
     <div style={{ paddingTop: 100 }}>
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <p>Add Team</p>
+        <p>{editting ? 'Edit Team' : 'Create Team'}</p>
         <input
           type='text'
           placeholder='Name'
@@ -85,6 +85,7 @@ const Teams = props => {
           value={name}
           required='required'
           onChange={onChange}
+          maxLength={50}
         />
         <input
           type='submit'

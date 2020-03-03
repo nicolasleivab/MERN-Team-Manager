@@ -26,7 +26,6 @@ const Members = props => {
       const filteredMem = members.filter(
         member => member.team === currentTeam._id
       );
-      console.log(filteredMem);
       setMembersByTeam(filteredMem);
     }
   }, [currentTeam, members]);

@@ -58,3 +58,9 @@ ul li a {
 ul li a:hover {
   text-decoration: underline;
 }
+
+@media only screen and (max-width: 767px) {
+  .hide {
+    visibility: hidden;
+  }
+}

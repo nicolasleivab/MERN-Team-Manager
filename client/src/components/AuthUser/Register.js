@@ -57,6 +57,7 @@ const Register = props => {
           value={name}
           required='required'
           onChange={onChange}
+          maxLength={35}
         />
         <label htmlFor='email'>{email !== '' && 'Email'}</label>
         <input
@@ -66,6 +67,7 @@ const Register = props => {
           value={email}
           required='required'
           onChange={onChange}
+          maxLength={35}
         />
         <label htmlFor='password'>{password !== '' && 'Password'}</label>
         <input
@@ -76,6 +78,7 @@ const Register = props => {
           required='required'
           onChange={onChange}
           minLength='6'
+          maxLength={35}
         />
         <label htmlFor='password2'>
           {password2 !== '' && 'Confirm Password'}
@@ -88,6 +91,7 @@ const Register = props => {
           required='required'
           onChange={onChange}
           minLength='6'
+          maxLength={35}
         />
         <input type='submit' value='Register' className={styles.btnGray} />
       </form>

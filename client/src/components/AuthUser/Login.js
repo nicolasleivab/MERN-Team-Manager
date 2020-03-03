@@ -53,6 +53,7 @@ const Register = props => {
           value={email}
           required='required'
           onChange={onChange}
+          maxLength={35}
         />
         <label htmlFor='password'>{password !== '' && 'Password'}</label>
         <input
@@ -62,6 +63,7 @@ const Register = props => {
           value={password}
           required='required'
           onChange={onChange}
+          maxLength={35}
         />
         <input type='submit' value='Login' className={styles.btnGray} />
       </form>

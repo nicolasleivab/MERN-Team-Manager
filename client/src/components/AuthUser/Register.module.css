@@ -7,10 +7,11 @@
   align-items: center;
 }
 .title {
-  font-size: 2.4rem;
+  font-size: 2.1rem;
+  font-weight: 600;
   padding-top: 100px;
   text-align: center;
-  color: #003d66;
+  color: #333;
 }
 label {
   font-size: 1.2rem;
@@ -19,8 +20,21 @@ label {
 }
 .btnGray {
   padding: 5px;
-  color: #555;
+  background: rgb(96, 228, 43);
+  background: linear-gradient(
+    90deg,
+    rgba(96, 228, 43, 1) 0%,
+    rgba(63, 224, 127, 1) 67%
+  );
   border-radius: 3px;
+  box-shadow: 2px 3px 3px #ccc;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.btnGray:active {
+  box-shadow: 0;
 }
 
 .btnGray:active {
@@ -30,7 +44,9 @@ label {
   position: absolute;
   display: flex;
   align-items: center;
-  top: 145px;
+  bottom: 25px;
+  left: 40%;
+  margin: auto;
   background-color: rgb(255, 102, 102, 0.75);
   width: fit-content;
   height: 25px;
@@ -41,7 +57,7 @@ label {
   position: absolute;
   display: flex;
   align-items: center;
-  top: 145px;
+  bottom: 25px;
   background-color: rgb(0, 153, 51, 0.7);
   width: fit-content;
   height: 25px;
@@ -57,4 +73,35 @@ label {
   font-style: italic;
   font-size: 1.4rem;
   color: #fff;
+}
+
+.Login {
+  position: relative;
+  width: 600px;
+  height: 450px;
+  margin: 100px auto;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(238, 238, 238);
+}
+
+/*Default Login input style*/
+.Login input {
+  margin: 10px;
+  height: 35px;
+  width: 270px;
+  border-radius: 20px;
+  border: 0px;
+  padding: 10px;
+  font-size: 1.1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .Login {
+    flex-direction: column;
+    width: 400px;
+  }
 }

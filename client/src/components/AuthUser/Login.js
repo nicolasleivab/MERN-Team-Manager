@@ -5,6 +5,8 @@ import AlertContext from "../../context/alert/alertContext";
 import Alert from "./Alert";
 import loginPng from "../assets/img/login.jpg";
 import useWindowSize from "../assets/hooks/useWindowSize";
+import EmailIcon from "@material-ui/icons/Email";
+import LockIcon from "@material-ui/icons/Lock";
 import styles from "./Register.module.css";
 
 const Register = (props) => {
@@ -69,24 +71,42 @@ const Register = (props) => {
           onSubmit={onSubmit}
         >
           <Alert />
-          <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={email}
-            required="required"
-            onChange={onChange}
-            maxLength={35}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            required="required"
-            onChange={onChange}
-            maxLength={35}
-          />
+          <div
+            style={{
+              position: "relative",
+              height: "fitContent",
+              width: "fitContent",
+            }}
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              required="required"
+              onChange={onChange}
+              maxLength={35}
+            />
+            <EmailIcon className={styles.uiIcon} />
+          </div>
+          <div
+            style={{
+              position: "relative",
+              height: "fitContent",
+              width: "fitContent",
+            }}
+          >
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              required="required"
+              onChange={onChange}
+              maxLength={35}
+            />
+            <LockIcon className={styles.uiIcon} />
+          </div>
           <input type="submit" value="LOGIN" className={styles.btnGray} />
           <Link to="/register" className={styles.signUp}>
             Sign up

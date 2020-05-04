@@ -1,5 +1,5 @@
 .formContainer {
-  padding-top: 35px;
+  padding-top: 0;
   margin: auto;
   width: 300px;
   display: flex;
@@ -32,6 +32,8 @@ label {
   color: #fff;
   font-weight: 600;
   font-size: 1.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 .btnGray:active {
@@ -89,6 +91,10 @@ label {
   background-color: rgb(238, 238, 238);
 }
 
+.Register {
+  margin-top: 100px;
+}
+
 /*Default Login input style*/
 .Login input {
   margin: 15px;
@@ -97,7 +103,18 @@ label {
   border-radius: 20px;
   border: 0px;
   padding: 10px;
+  padding-left: 30px;
   font-size: 1.1rem;
+}
+.Register input {
+  margin: 15px;
+  height: 35px;
+  width: 270px;
+  border-radius: 20px;
+  border: 0px;
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: rgb(238, 238, 238);
 }
 
 @media only screen and (max-width: 800px) {
@@ -112,10 +129,13 @@ label {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 400px) {
   .Login {
     flex-direction: column;
     width: 330px;
+  }
+  .Register {
+    margin-top: 80px;
   }
 }
 
@@ -127,4 +147,12 @@ label {
   text-decoration: none;
   text-align: right;
   margin-right: 20px;
+  align-self: flex-end;
+}
+
+.uiIcon {
+  position: absolute;
+  left: 25px;
+  top: 24px;
+  color: #555555;
 }

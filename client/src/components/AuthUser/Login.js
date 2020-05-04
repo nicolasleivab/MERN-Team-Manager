@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
 import Alert from "./Alert";
@@ -46,9 +47,11 @@ const Register = (props) => {
 
   return (
     <div className={styles.Login}>
-      <div>
-        <img src={loginPng} alt="LoginPng" width={width > 800 ? "220" : "0"} />
-      </div>
+      {width > 800 && (
+        <div>
+          <img src={loginPng} alt="LoginPng" width="220" />
+        </div>
+      )}
       <div
         style={{
           display: "flex",
@@ -85,6 +88,9 @@ const Register = (props) => {
             maxLength={35}
           />
           <input type="submit" value="LOGIN" className={styles.btnGray} />
+          <Link to="/register" className={styles.signUp}>
+            Sign up
+          </Link>
         </form>
       </div>
     </div>

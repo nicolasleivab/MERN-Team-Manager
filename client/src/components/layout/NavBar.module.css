@@ -26,6 +26,11 @@
   margin-left: 7px;
   color: #fff;
 }
+@media only screen and (max-width: 800px) {
+  .title {
+    font-size: 1.7rem;
+  }
+}
 ul {
   display: flex;
   height: 100%;
@@ -38,6 +43,11 @@ ul {
 ul li {
   margin-left: 30px;
   color: #fff;
+}
+@media only screen and (max-width: 800px) {
+  ul li {
+    font-size: 1.4rem;
+  }
 }
 .navLink {
   text-decoration: none;

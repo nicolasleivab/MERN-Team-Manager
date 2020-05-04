@@ -9,6 +9,7 @@
 .title {
   font-size: 2.1rem;
   font-weight: 600;
+  margin-bottom: 5px;
   padding-top: 100px;
   text-align: center;
   color: #333;
@@ -78,8 +79,8 @@ label {
 .Login {
   position: relative;
   width: 600px;
-  height: 450px;
-  margin: 100px auto;
+  height: 420px;
+  margin: 200px auto;
   border-radius: 20px;
   box-shadow: 1px 1px 1px 1px #ccc;
   display: flex;
@@ -90,7 +91,7 @@ label {
 
 /*Default Login input style*/
 .Login input {
-  margin: 10px;
+  margin: 15px;
   height: 35px;
   width: 270px;
   border-radius: 20px;
@@ -102,6 +103,28 @@ label {
 @media only screen and (max-width: 800px) {
   .Login {
     flex-direction: column;
+    margin-top: 120px;
     width: 400px;
+    height: 350px;
   }
+  .title {
+    padding-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .Login {
+    flex-direction: column;
+    width: 330px;
+  }
+}
+
+.signUp {
+  color: rgba(96, 228, 43, 1);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: right;
+  margin-right: 20px;
 }

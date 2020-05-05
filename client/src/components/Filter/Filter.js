@@ -1,21 +1,21 @@
-import React, { useContext, useState, useEffect } from 'react';
-import MemberContext from '../../context/member/memberContext';
+import React, { useContext, useState, useEffect } from "react";
+import MemberContext from "../../context/member/memberContext";
 
 const Filter = () => {
   const memberContext = useContext(MemberContext);
   const { filterMembers, clearFilter, filtered } = memberContext;
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   useEffect(() => {
     if (filtered === null) {
-      setText('');
+      setText("");
     }
   }, [filtered]);
 
-  const onChange = e => {
+  const onChange = (e) => {
     setText(e.target.value);
     filterMembers(e.target.value);
-    if (e.target.value === '') {
+    if (e.target.value === "") {
       clearFilter();
     }
   };
@@ -23,9 +23,9 @@ const Filter = () => {
   return (
     <div>
       <input
-        type='text'
+        type="text"
         value={text}
-        placeholder='Filter members...'
+        placeholder="Filter members..."
         onChange={onChange}
       />
     </div>

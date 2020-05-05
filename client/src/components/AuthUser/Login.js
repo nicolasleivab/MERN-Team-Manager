@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import AlertContext from "../../context/alert/alertContext";
 import Alert from "./Alert";
-import loginPng from "../assets/img/login.jpg";
+import loginPng from "../assets/img/login.png";
 import useWindowSize from "../assets/hooks/useWindowSize";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
@@ -51,7 +51,12 @@ const Register = (props) => {
     <div className={styles.Login}>
       {width > 800 && (
         <div>
-          <img src={loginPng} alt="LoginPng" width="220" />
+          <img
+            src={loginPng}
+            alt="LoginPng"
+            width="200"
+            style={{ marginLeft: 30 }}
+          />
         </div>
       )}
       <div

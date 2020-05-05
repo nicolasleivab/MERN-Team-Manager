@@ -94,7 +94,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(238, 238, 238);
+  background: rgb(245, 245, 245);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(221, 221, 221, 1) 89%
+  );
 }
 
 .Register {

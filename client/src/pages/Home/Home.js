@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, Fragment } from 'react';
-import Members from '../../components/Members/Members';
-import Teams from '../../components/Teams/Teams';
-import MemberForm from '../../components/MemberForm/MemberForm';
-import styles from './Home.module.css';
-import AuthContext from '../../context/auth/authContext';
-import TeamContext from '../../context/team/teamContext';
+import React, { useContext, useEffect, Fragment } from "react";
+import Members from "../../components/Members/Members";
+import MembersTable from "../../components/MembersTable/MembersTable";
+import Teams from "../../components/Teams/Teams";
+import MemberForm from "../../components/MemberForm/MemberForm";
+import styles from "./Home.module.css";
+import AuthContext from "../../context/auth/authContext";
+import TeamContext from "../../context/team/teamContext";
 
 const Home = () => {
   const authContext = useContext(AuthContext);
@@ -35,7 +36,7 @@ const Home = () => {
             <MemberForm />
           </div>
           <div className={styles.Members}>
-            <Members />
+            <MembersTable />
           </div>
         </Fragment>
       )}

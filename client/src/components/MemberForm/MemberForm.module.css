@@ -22,6 +22,7 @@
 @media only screen and (max-width: 500px) {
   .MemberForm {
     left: 10%;
+    overflow: hidden;
   }
 }
 @media only screen and (max-width: 400px) {

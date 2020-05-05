@@ -3,6 +3,8 @@
   min-width: 200px;
   padding: 10px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: fit-content;
   border-bottom: solid 1px #555;
 }

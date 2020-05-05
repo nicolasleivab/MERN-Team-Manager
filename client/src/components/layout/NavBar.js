@@ -5,15 +5,18 @@ import styles from "./NavBar.module.css";
 import AuthContext from "../../context/auth/authContext";
 import MemberContext from "../../context/member/memberContext";
 import TeamContext from "../../context/team/teamContext";
+import ModalContext from "../../context/modal/modalContext";
 
 const NavBar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
   const memberContext = useContext(MemberContext);
   const teamContext = useContext(TeamContext);
+  const modalContext = useContext(ModalContext);
 
   const { isAuthenticated, logoutUser, user } = authContext;
   const { clearMembers } = memberContext;
   const { clearTeams } = teamContext;
+  const { modal } = modalContext;
 
   const onLogout = () => {
     logoutUser();
@@ -48,7 +51,7 @@ const NavBar = ({ title, icon }) => {
   );
 
   return (
-    <div className={styles.NavBar}>
+    <div className={modal ? styles.NavBarBlurry : styles.NavBar}>
       <div className={styles.flexContainer}>
         <div className={styles.titleContainer}>
           <i className={icon} style={{ color: "#fff" }}></i>

@@ -1,10 +1,14 @@
-.NavBar {
+.NavBar,
+.NavBarBlurry {
   position: absolute;
   top: 0;
   width: 100%;
   height: 70px;
   background-color: #333;
   box-shadow: 0 2px 3px #555;
+}
+.NavBarBlurry {
+  filter: blur(5px);
 }
 .flexContainer {
   display: flex;
@@ -30,6 +34,13 @@
   .title {
     font-size: 1.7rem;
   }
+  ul li {
+    font-size: 1.4rem;
+  }
+  .NavBar {
+    height: fit-content;
+    padding: 10px 0 10px 0;
+  }
 }
 ul {
   display: flex;
@@ -44,11 +55,7 @@ ul li {
   margin-left: 30px;
   color: #fff;
 }
-@media only screen and (max-width: 800px) {
-  ul li {
-    font-size: 1.4rem;
-  }
-}
+
 .navLink {
   text-decoration: none;
   color: #fff;

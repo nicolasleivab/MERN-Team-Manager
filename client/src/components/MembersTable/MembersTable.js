@@ -4,7 +4,7 @@ import TeamContext from "../../context/team/teamContext";
 import ModalContext from "../../context/modal/modalContext";
 import MaterialTable from "material-table";
 
-export default function MaterialTableDemo() {
+export default function MembersTable() {
   const memberContext = useContext(MemberContext);
   const teamContext = useContext(TeamContext);
   const modalContext = useContext(ModalContext);
@@ -75,6 +75,11 @@ export default function MaterialTableDemo() {
 
   const setUpdate = (member) => {
     setCurrent(member);
+    window.location.href = "#";
+    setModal();
+  };
+  const setAddMember = () => {
+    window.location.href = "#";
     setModal();
   };
 
@@ -83,6 +88,12 @@ export default function MaterialTableDemo() {
       title={currentTeam && currentTeam.name}
       columns={state.columns}
       data={state.data}
+      body={state.body}
+      localization={{
+        body: {
+          emptyDataSourceMessage: "Please add a member",
+        },
+      }}
       actions={[
         {
           icon: "edit",
@@ -98,7 +109,7 @@ export default function MaterialTableDemo() {
           icon: "add",
           tooltip: "Add Member",
           isFreeAction: true,
-          onClick: () => setModal(),
+          onClick: () => setAddMember(),
         },
       ]}
     />

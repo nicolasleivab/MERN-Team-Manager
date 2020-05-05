@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, Fragment } from "react";
-import Members from "../../components/Members/Members";
 import MembersTable from "../../components/MembersTable/MembersTable";
 import Teams from "../../components/Teams/Teams";
 import MemberForm from "../../components/MemberForm/MemberForm";
@@ -22,7 +21,7 @@ const Home = () => {
   }
   return (
     <div className={styles.gridContainer}>
-      <div>
+      <div className={styles.Teams}>
         <Teams />
         {teams.length === 0 && (
           <div className={styles.flexContainer}>

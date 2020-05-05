@@ -75,3 +75,11 @@
   flex-direction: column;
   align-items: center;
 }
+
+.closeIcon {
+  cursor: pointer;
+  color: #555;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}

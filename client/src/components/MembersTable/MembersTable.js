@@ -86,17 +86,17 @@ export default function MaterialTableDemo() {
       actions={[
         {
           icon: "edit",
-          tooltip: "Edit User",
+          tooltip: "Edit Member",
           onClick: (event, rowData) => setUpdate(rowData),
         },
         {
           icon: "delete",
-          tooltip: "Delete User",
+          tooltip: "Delete Member",
           onClick: (event, rowData) => deleteMember(rowData),
         },
         {
           icon: "add",
-          tooltip: "Add User",
+          tooltip: "Add Member",
           isFreeAction: true,
           onClick: () => setModal(),
         },

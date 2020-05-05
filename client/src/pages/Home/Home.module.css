@@ -2,14 +2,18 @@
   margin-top: 150px;
   margin-left: 150px;
 }
+.Teams {
+  margin-top: 35px;
+}
 .gridContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 @media only screen and (max-width: 1000px) {
   .gridContainer {
     flex-direction: column;
+    align-items: center;
   }
   .Members {
     margin-left: 0;
@@ -22,6 +26,10 @@
   .Members {
     margin: 100px 0 50px 0;
     width: 85%;
+  }
+
+  .Teams {
+    margin-top: 0;
   }
 }
 .alertText {

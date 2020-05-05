@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, Fragment } from "react";
 import MemberContext from "../../context/member/memberContext";
 import TeamContext from "../../context/team/teamContext";
 import ModalContext from "../../context/modal/modalContext";
+import CloseIcon from "@material-ui/icons/Close";
 import styles from "./MemberForm.module.css";
 
 const MemberForm = () => {
@@ -77,10 +78,20 @@ const MemberForm = () => {
     clearCurrent();
     hideModal();
   };
+
+  const handleClose = () => {
+    clearCurrent();
+    hideModal();
+  };
+
   return (
     <Fragment>
       {modal && (
         <div className={styles.MemberForm}>
+          <CloseIcon
+            className={styles.closeIcon}
+            onClick={() => handleClose()}
+          />
           <form className={styles.formContainer} onSubmit={onSubmit}>
             <p>{current ? "Edit Team Member" : "Add Team Member"}</p>
             <input

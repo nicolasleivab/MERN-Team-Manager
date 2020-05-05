@@ -1,6 +1,9 @@
-import React, { useContext, useEffect, useState, Fragment } from 'react';
-import TeamContext from '../../context/team/teamContext';
-import styles from './TeamItem.module.css';
+import React, { useContext, useEffect, useState, Fragment } from "react";
+import TeamContext from "../../context/team/teamContext";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Tooltip from "@material-ui/core/Tooltip";
+import styles from "./TeamItem.module.css";
 
 const TeamItem = ({ team, editTeam, removeTeam }) => {
   const teamContext = useContext(TeamContext);
@@ -9,7 +12,7 @@ const TeamItem = ({ team, editTeam, removeTeam }) => {
 
   const { _id, name } = team;
 
-  const [isActive, setActive] = useState('');
+  const [isActive, setActive] = useState("");
 
   useEffect(() => {
     if (currentTeam !== null) {
@@ -24,7 +27,7 @@ const TeamItem = ({ team, editTeam, removeTeam }) => {
   return (
     <div className={styles.TeamItem}>
       <a
-        href='#!'
+        href="#!"
         onClick={teamHandler}
         className={_id === isActive ? styles.activeTeam : styles.inactiveTeam}
       >
@@ -32,8 +35,20 @@ const TeamItem = ({ team, editTeam, removeTeam }) => {
       </a>
       {_id === isActive && (
         <Fragment>
-          <i className='fa fa-edit' onClick={editTeam}></i>
-          <i className='fa fa-trash' onClick={removeTeam}></i>
+          <Tooltip title="Edit Team" placement="bottom-center">
+            <EditIcon
+              fontSize="small"
+              onClick={editTeam}
+              style={{ marginLeft: 30, cursor: "pointer" }}
+            />
+          </Tooltip>
+          <Tooltip title="Delete Team" placement="bottom-center">
+            <DeleteIcon
+              fontSize="small"
+              onClick={removeTeam}
+              style={{ marginLeft: 15, cursor: "pointer" }}
+            />
+          </Tooltip>
         </Fragment>
       )}
     </div>

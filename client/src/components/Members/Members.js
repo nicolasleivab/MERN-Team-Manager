@@ -1,12 +1,12 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import MemberContext from '../../context/member/memberContext';
-import TeamContext from '../../context/team/teamContext';
-import MemberItem from '../MemberItem/MemberItem';
-import Filter from '../../components/Filter/Filter';
-import styles from './Members.module.css';
-import PropTypes from 'prop-types';
+import React, { Fragment, useContext, useEffect, useState } from "react";
+import MemberContext from "../../context/member/memberContext";
+import TeamContext from "../../context/team/teamContext";
+import MemberItem from "../MemberItem/MemberItem";
+import Filter from "../../components/Filter/Filter";
+import styles from "./Members.module.css";
+import PropTypes from "prop-types";
 
-const Members = props => {
+const Members = (props) => {
   const memberContext = useContext(MemberContext);
   const teamContext = useContext(TeamContext);
 
@@ -24,7 +24,7 @@ const Members = props => {
     //filter membrs by current team
     if (currentTeam !== null && members !== null) {
       const filteredMem = members.filter(
-        member => member.team === currentTeam._id
+        (member) => member.team === currentTeam._id
       );
       setMembersByTeam(filteredMem);
     }
@@ -36,10 +36,10 @@ const Members = props => {
         <div className={styles.flexContainer}>
           <Filter />
           {filtered !== null
-            ? filtered.map(member => (
+            ? filtered.map((member) => (
                 <MemberItem member={member} key={member._id} />
               ))
-            : membersByTeam.map(member => (
+            : membersByTeam.map((member) => (
                 <MemberItem member={member} key={member._id} />
               ))}
           {membersByTeam.length === 0 && (
@@ -57,7 +57,7 @@ const Members = props => {
 };
 
 MemberItem.propTypes = {
-  member: PropTypes.object.isRequired
+  member: PropTypes.object.isRequired,
 };
 
 export default Members;

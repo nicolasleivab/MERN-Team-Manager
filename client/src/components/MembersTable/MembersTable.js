@@ -46,14 +46,18 @@ export default function MaterialTableDemo() {
         });
       });
       const columns = [...state.columns];
-      setState({ columns: columns, data: dataToPass });
+      setState({
+        columns: columns,
+        data: dataToPass,
+      });
+      console.log(currentTeam);
       console.log(dataToPass);
     }
   }, [currentTeam, members]);
 
   return (
     <MaterialTable
-      title="Editable Example"
+      title={currentTeam && currentTeam.name}
       columns={state.columns}
       data={state.data}
       editable={{

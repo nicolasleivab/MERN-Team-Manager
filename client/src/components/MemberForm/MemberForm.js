@@ -42,7 +42,7 @@ const MemberForm = () => {
   });
   const { name, email, phone, role } = member;
 
-  const [modalActive, setModal] = useState(true);
+  const [modalActive, setModal] = useState(false);
 
   const onChange = (e) => {
     setMember({ ...member, [e.target.name]: e.target.value });

@@ -2,14 +2,13 @@
   padding-top: 100px;
 }
 .gridContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  column-gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media only screen and (max-width: 1000px) {
   .gridContainer {
-    grid-template-columns: auto;
+    flex-direction: column;
   }
   .Members {
     padding-top: 50px;

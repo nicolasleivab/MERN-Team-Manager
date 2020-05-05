@@ -34,7 +34,13 @@ const Members = (props) => {
     <Fragment>
       {members !== null && !loading ? (
         <div className={styles.flexContainer}>
-          <Filter />
+          <div className={styles.gridContainer}>
+            <p>Name</p>
+            <p>Email</p>
+            <p>Phone</p>
+            <p>Role</p>
+            <Filter />
+          </div>
           {filtered !== null
             ? filtered.map((member) => (
                 <MemberItem member={member} key={member._id} />

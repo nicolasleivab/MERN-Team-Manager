@@ -3,16 +3,37 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 600px;
+  margin-left: 100px;
+  height: fit-content;
+  background-color: #f0f0f0;
+  box-shadow: 1px 1px 1px #ccc;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 1000px) {
+  .flexContainer {
+    margin: 50px 0 0 0;
+    width: 100%;
+  }
 }
 .flexContainer input {
-  margin: 10px;
-  height: 30px;
-  width: 300px;
-  padding: 5px;
-  border: none;
-  box-shadow: 3px 5px 10px #ccc;
+  margin: 15px;
+  height: 35px;
+  width: 175px;
+  border-radius: 20px;
+  border: 0px;
+  padding: 10px;
+  font-size: 1.1rem;
 }
 .alertText {
   color: #555;
   font-style: italic;
+}
+
+.gridContainer {
+  display: grid;
+  width: 95%;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: baseline;
 }

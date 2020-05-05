@@ -15,7 +15,7 @@ const ModalState = (props) => {
   };
   // Hide Modal
   const hideModal = () => {
-    dispatch({ type: SET_MODAL });
+    dispatch({ type: HIDE_MODAL });
   };
 
   return (

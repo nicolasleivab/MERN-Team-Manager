@@ -64,13 +64,18 @@ const MemberForm = () => {
       if (filtered !== null) {
         updateMember(filtered);
         filterMembers(filtered.find((el) => el.name === member.name).name);
+        console.log(member);
+        hideModal();
       }
     } else {
       addMember(member);
+      console.log(member);
       clearFilter();
+      hideModal();
     }
     //reset form
     clearCurrent();
+    hideModal();
   };
   return (
     <Fragment>

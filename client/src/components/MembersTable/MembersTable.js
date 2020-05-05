@@ -1,14 +1,26 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import MemberContext from "../../context/member/memberContext";
 import TeamContext from "../../context/team/teamContext";
+import ModalContext from "../../context/modal/modalContext";
 import MaterialTable from "material-table";
 
 export default function MaterialTableDemo() {
   const memberContext = useContext(MemberContext);
   const teamContext = useContext(TeamContext);
+  const modalContext = useContext(ModalContext);
 
-  const { members, getMembers, loading } = memberContext;
+  const {
+    members,
+    getMembers,
+    loading,
+    current,
+    setCurrent,
+    clearCurrent,
+    deleteMember,
+  } = memberContext;
   const { currentTeam } = teamContext;
+  const { modal, setModal, hideModal } = modalContext;
+
   const [membersByTeam, setMembersByTeam] = useState([]);
 
   useEffect(() => {
@@ -18,6 +30,11 @@ export default function MaterialTableDemo() {
 
   const [state, setState] = useState({
     columns: [
+      {
+        title: "#",
+        field: "_id",
+        render: (rowData) => <div>{rowData.tableData.id + 1}</div>,
+      },
       { title: "Name", field: "name" },
       { title: "Email", field: "email" },
       { title: "Phone", field: "phone" },
@@ -43,6 +60,7 @@ export default function MaterialTableDemo() {
           email: member.email,
           phone: member.phone,
           role: member.role,
+          _id: member._id,
         });
       });
       const columns = [...state.columns];
@@ -55,48 +73,34 @@ export default function MaterialTableDemo() {
     }
   }, [currentTeam, members]);
 
+  const setUpdate = (member) => {
+    setCurrent(member);
+    setModal();
+  };
+
   return (
     <MaterialTable
       title={currentTeam && currentTeam.name}
       columns={state.columns}
       data={state.data}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
+      actions={[
+        {
+          icon: "edit",
+          tooltip: "Edit User",
+          onClick: (event, rowData) => setUpdate(rowData),
+        },
+        {
+          icon: "delete",
+          tooltip: "Delete User",
+          onClick: (event, rowData) => deleteMember(rowData),
+        },
+        {
+          icon: "add",
+          tooltip: "Add User",
+          isFreeAction: true,
+          onClick: () => setModal(),
+        },
+      ]}
     />
   );
 }

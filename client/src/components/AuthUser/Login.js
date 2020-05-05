@@ -86,6 +86,7 @@ const Register = (props) => {
               required="required"
               onChange={onChange}
               maxLength={35}
+              style={{ paddingLeft: 30 }}
             />
             <EmailIcon className={styles.uiIcon} />
           </div>
@@ -104,13 +105,29 @@ const Register = (props) => {
               required="required"
               onChange={onChange}
               maxLength={35}
+              style={{ paddingLeft: 30 }}
             />
             <LockIcon className={styles.uiIcon} />
           </div>
           <input type="submit" value="LOGIN" className={styles.btnGray} />
-          <Link to="/register" className={styles.signUp}>
-            Sign up
-          </Link>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "baseline",
+            }}
+          >
+            <div>
+              <p style={{ color: "#555", fontSize: 14, marginRight: 10 }}>
+                New user?
+              </p>
+            </div>
+            <div>
+              <Link to="/register" className={styles.signUp}>
+                Sign up
+              </Link>
+            </div>
+          </div>
         </form>
       </div>
     </div>

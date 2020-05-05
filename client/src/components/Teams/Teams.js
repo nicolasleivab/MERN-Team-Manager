@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import TeamContext from '../../context/team/teamContext';
-import MemberContext from '../../context/member/memberContext';
-import TeamItem from '../../components/TeamItem/TeamItem';
-import styles from './Teams.module.css';
+import React, { useContext, useEffect, useState } from "react";
+import TeamContext from "../../context/team/teamContext";
+import MemberContext from "../../context/member/memberContext";
+import TeamItem from "../../components/TeamItem/TeamItem";
+import styles from "./Teams.module.css";
 
-const Teams = props => {
+const Teams = (props) => {
   const teamContext = useContext(TeamContext);
   const memberContext = useContext(MemberContext);
 
@@ -15,7 +15,7 @@ const Teams = props => {
     addTeam,
     currentTeam,
     updateTeam,
-    deleteTeam
+    deleteTeam,
   } = teamContext;
 
   const { members, deleteMember } = memberContext;
@@ -33,17 +33,17 @@ const Teams = props => {
   }, [teams]);
 
   const [team, setTeam] = useState({
-    name: ''
+    name: "",
   });
   const [editting, setEdit] = useState(false);
 
   const { name } = team;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setTeam({ ...team, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (editting) {
       updateTeam(team);
@@ -52,7 +52,7 @@ const Teams = props => {
     }
     setCurrentTeam(team);
 
-    setTeam({ name: '' });
+    setTeam({ name: "" });
     setEdit(false);
   };
 
@@ -62,48 +62,48 @@ const Teams = props => {
   };
 
   const clearTeamEdit = () => {
-    setTeam({ name: '' });
+    setTeam({ name: "" });
     setEdit(false);
   };
 
   const removeTeam = () => {
     deleteTeam(currentTeam);
     members.map(
-      member => member.team === currentTeam._id && deleteMember(member)
+      (member) => member.team === currentTeam._id && deleteMember(member)
     );
     setCurrentTeam(teams[0]);
   };
 
   return (
-    <div style={{ paddingTop: 100 }}>
+    <div className={styles.Teams}>
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <p>{editting ? 'Edit Team' : 'Create Team'}</p>
+        <p>{editting ? "Edit Team" : "Create Team"}</p>
         <input
-          type='text'
-          placeholder='Name'
-          name='name'
+          type="text"
+          placeholder="Name"
+          name="name"
           value={name}
-          required='required'
+          required="required"
           onChange={onChange}
           maxLength={50}
         />
         <input
-          type='submit'
-          value={editting ? 'Update' : 'Add Team'}
-          className={editting ? styles.btnGreen : styles.btnBlue}
+          type="submit"
+          value={editting ? "Update" : "Add Team"}
+          className={styles.mainBtn}
         />
         {editting && (
           <input
-            type='submit'
-            value='Clear'
-            className={styles.btnGray}
+            type="submit"
+            value="Clear"
+            className={styles.mainBtnGray}
             onClick={clearTeamEdit}
           />
         )}
       </form>
       <div className={styles.formContainer}>
         {teams.length > 0 &&
-          teams.map(team => (
+          teams.map((team) => (
             <TeamItem
               team={team}
               key={team._id}

@@ -49,7 +49,9 @@ const Register = (props) => {
     <div className={styles.Register}>
       <p className={styles.title}>Account Register</p>
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <Alert />
+        <div className={styles.alertBox}>
+          <Alert />
+        </div>
         <input
           type="text"
           placeholder="Name"
@@ -89,9 +91,24 @@ const Register = (props) => {
           maxLength={35}
         />
         <input type="submit" value="Register" className={styles.btnGray} />
-        <Link to="/login" className={styles.signUp}>
-          Sign in
-        </Link>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "baseline",
+          }}
+        >
+          <div>
+            <p style={{ color: "#555", fontSize: 14, marginRight: 10 }}>
+              Already have an account?
+            </p>
+          </div>
+          <div>
+            <Link to="/login" className={styles.signUp}>
+              Sign in
+            </Link>
+          </div>
+        </div>
       </form>
     </div>
   );

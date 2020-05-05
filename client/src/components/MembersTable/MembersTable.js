@@ -22,7 +22,7 @@ export default function MaterialTableDemo() {
       { title: "Email", field: "email" },
       { title: "Phone", field: "phone" },
       {
-        title: "role",
+        title: "Role",
         field: "role",
       },
     ],

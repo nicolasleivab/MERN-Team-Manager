@@ -91,7 +91,7 @@ const Register = (props) => {
               required="required"
               onChange={onChange}
               maxLength={35}
-              style={{ paddingLeft: 30 }}
+              style={{ paddingLeft: 35 }}
             />
             <EmailIcon className={styles.uiIcon} />
           </div>
@@ -110,7 +110,7 @@ const Register = (props) => {
               required="required"
               onChange={onChange}
               maxLength={35}
-              style={{ paddingLeft: 30 }}
+              style={{ paddingLeft: 35 }}
             />
             <LockIcon className={styles.uiIcon} />
           </div>

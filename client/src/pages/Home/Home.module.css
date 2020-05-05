@@ -1,5 +1,6 @@
 .Members {
-  padding-top: 100px;
+  margin-top: 150px;
+  margin-left: 150px;
 }
 .gridContainer {
   display: flex;
@@ -11,7 +12,7 @@
     flex-direction: column;
   }
   .Members {
-    padding-top: 50px;
+    margin-left: 0;
   }
   .MemberForm {
     margin-top: -50px;

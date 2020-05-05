@@ -17,6 +17,12 @@
     margin-top: -50px;
   }
 }
+@media only screen and (max-width: 500px) {
+  .Members {
+    margin: 50px 0 50px 0;
+    width: 85%;
+  }
+}
 .alertText {
   color: #555;
   font-style: italic;

@@ -1,12 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import TeamContext from "../../context/team/teamContext";
-import MemberContext from "../../context/member/memberContext";
-import TeamItem from "../../components/TeamItem/TeamItem";
-import styles from "./Teams.module.css";
+import React, { useContext, useEffect, useState } from 'react';
+import TeamContext from '../../context/team/teamContext';
+import MemberContext from '../../context/member/memberContext';
+import ModalContext from '../../context/modal/modalContext';
+import TeamItem from '../../components/TeamItem/TeamItem';
+import styles from './Teams.module.css';
 
 const Teams = (props) => {
   const teamContext = useContext(TeamContext);
   const memberContext = useContext(MemberContext);
+  const modalContext = useContext(ModalContext);
 
   const {
     teams,
@@ -17,8 +19,8 @@ const Teams = (props) => {
     updateTeam,
     deleteTeam,
   } = teamContext;
-
   const { members, deleteMember } = memberContext;
+  const { modal } = modalContext;
 
   useEffect(() => {
     getTeams();
@@ -33,7 +35,7 @@ const Teams = (props) => {
   }, [teams]);
 
   const [team, setTeam] = useState({
-    name: "",
+    name: '',
   });
   const [editting, setEdit] = useState(false);
 
@@ -52,7 +54,7 @@ const Teams = (props) => {
     }
     setCurrentTeam(team);
 
-    setTeam({ name: "" });
+    setTeam({ name: '' });
     setEdit(false);
   };
 
@@ -62,7 +64,7 @@ const Teams = (props) => {
   };
 
   const clearTeamEdit = () => {
-    setTeam({ name: "" });
+    setTeam({ name: '' });
     setEdit(false);
   };
 
@@ -77,27 +79,30 @@ const Teams = (props) => {
   return (
     <div className={styles.Teams}>
       <form className={styles.formContainer} onSubmit={onSubmit}>
-        <p>{editting ? "Edit Team" : "Create Team"}</p>
+        <p>{editting ? 'Edit Team' : 'Create Team'}</p>
         <input
-          type="text"
-          placeholder="Name"
-          name="name"
+          type='text'
+          placeholder='Name'
+          name='name'
           value={name}
-          required="required"
+          required='required'
           onChange={onChange}
           maxLength={50}
+          disabled={modal}
         />
         <input
-          type="submit"
-          value={editting ? "Update" : "Add Team"}
+          type='submit'
+          value={editting ? 'Update' : 'Add Team'}
           className={styles.mainBtn}
+          disabled={modal}
         />
         {editting && (
           <input
-            type="submit"
-            value="Clear"
+            type='submit'
+            value='Clear'
             className={styles.mainBtnGray}
             onClick={clearTeamEdit}
+            disabled={modal}
           />
         )}
       </form>

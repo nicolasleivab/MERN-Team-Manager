@@ -24,3 +24,9 @@
   text-decoration: none;
   color: #99b3e6;
 }
+
+.actionBtn:focus,
+.actionBtn:active {
+  outline: 1px solid #555;
+  border-radius: 50%;
+}

@@ -11,9 +11,7 @@ const TeamMember = require('../models/TeamMember');
 // @access  Private
 router.get('/', auth, async (req, res) => {
   try {
-    const teamMembers = await TeamMember.find({ user: req.user.id }).sort({
-      date: -1
-    });
+    const teamMembers = await TeamMember.find({ user: req.user.id });
     res.json(teamMembers);
   } catch (err) {
     console.error(err.message);

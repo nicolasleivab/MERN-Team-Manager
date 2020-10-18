@@ -1,11 +1,11 @@
-import React, { useContext, Fragment } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import styles from "./NavBar.module.css";
-import AuthContext from "../../context/auth/authContext";
-import MemberContext from "../../context/member/memberContext";
-import TeamContext from "../../context/team/teamContext";
-import ModalContext from "../../context/modal/modalContext";
+import React, { useContext, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import styles from './NavBar.module.css';
+import AuthContext from '../../context/auth/authContext';
+import MemberContext from '../../context/member/memberContext';
+import TeamContext from '../../context/team/teamContext';
+import ModalContext from '../../context/modal/modalContext';
 
 const NavBar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
@@ -28,24 +28,26 @@ const NavBar = ({ title, icon }) => {
     <Fragment>
       <li>Welcome {user && user.name}!</li>
       <li>
-        <a href="#!" onClick={onLogout}>
-          <i
-            className="fa fa-sign-out"
-            style={{ color: "#fff", marginRight: 5 }}
-          ></i>
-          <span className={styles.hide}>Logout</span>
-        </a>
+        {!modal && (
+          <a href='#!' onClick={onLogout}>
+            <i
+              className='fa fa-sign-out'
+              style={{ color: '#fff', marginRight: 5 }}
+            ></i>
+            <span className={styles.hide}>Logout</span>
+          </a>
+        )}
       </li>
     </Fragment>
   );
 
-  const guessLinks = (
+  const guessLinks = !modal && (
     <Fragment>
       <li>
-        <Link to="./login">Login</Link>
+        <Link to='./login'>Login</Link>
       </li>
       <li>
-        <Link to="./register">Register</Link>
+        <Link to='./register'>Register</Link>
       </li>
     </Fragment>
   );
@@ -54,7 +56,7 @@ const NavBar = ({ title, icon }) => {
     <div className={modal ? styles.NavBarBlurry : styles.NavBar}>
       <div className={styles.flexContainer}>
         <div className={styles.titleContainer}>
-          <i className={icon} style={{ color: "#fff" }}></i>
+          <i className={icon} style={{ color: '#fff' }}></i>
           <p className={styles.title}>{title}</p>
         </div>
         <ul>{isAuthenticated ? authLinks : guessLinks}</ul>
@@ -69,8 +71,8 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  title: "Team Manager",
-  icon: "fa fa-users fa-lg",
+  title: 'Team Manager',
+  icon: 'fa fa-users fa-lg',
 };
 
 export default NavBar;

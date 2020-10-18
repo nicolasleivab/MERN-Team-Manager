@@ -1,8 +1,8 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import MemberContext from "../../context/member/memberContext";
-import TeamContext from "../../context/team/teamContext";
-import ModalContext from "../../context/modal/modalContext";
-import MaterialTable from "material-table";
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import MemberContext from '../../context/member/memberContext';
+import TeamContext from '../../context/team/teamContext';
+import ModalContext from '../../context/modal/modalContext';
+import MaterialTable from 'material-table';
 
 export default function MembersTable() {
   const memberContext = useContext(MemberContext);
@@ -31,16 +31,16 @@ export default function MembersTable() {
   const [state, setState] = useState({
     columns: [
       {
-        title: "#",
-        field: "_id",
+        title: '#',
+        field: '_id',
         render: (rowData) => <div>{rowData.tableData.id + 1}</div>,
       },
-      { title: "Name", field: "name" },
-      { title: "Email", field: "email" },
-      { title: "Phone", field: "phone" },
+      { title: 'Name', field: 'name' },
+      { title: 'Email', field: 'email' },
+      { title: 'Phone', field: 'phone' },
       {
-        title: "Role",
-        field: "role",
+        title: 'Role',
+        field: 'role',
       },
     ],
     data: [],
@@ -75,43 +75,49 @@ export default function MembersTable() {
 
   const setUpdate = (member) => {
     setCurrent(member);
-    window.location.href = "#";
+    window.location.href = '#';
     setModal();
   };
   const setAddMember = () => {
-    window.location.href = "#";
+    window.location.href = '#';
     setModal();
   };
 
   return (
     <MaterialTable
       title={currentTeam && currentTeam.name}
-      columns={state.columns}
-      data={state.data}
+      columns={modal ? [] : state.columns}
+      data={modal ? [] : state.data}
+      options={{ search: !modal }}
       body={state.body}
+      style={{ padding: 10 }}
       localization={{
         body: {
-          emptyDataSourceMessage: "Please add a member",
+          emptyDataSourceMessage: 'Please add a member',
         },
       }}
-      actions={[
-        {
-          icon: "edit",
-          tooltip: "Edit Member",
-          onClick: (event, rowData) => setUpdate(rowData),
-        },
-        {
-          icon: "delete",
-          tooltip: "Delete Member",
-          onClick: (event, rowData) => deleteMember(rowData),
-        },
-        {
-          icon: "add",
-          tooltip: "Add Member",
-          isFreeAction: true,
-          onClick: () => setAddMember(),
-        },
-      ]}
+      actions={
+        modal
+          ? []
+          : [
+              {
+                icon: 'edit',
+                tooltip: 'Edit Member',
+                onClick: (event, rowData) => setUpdate(rowData),
+              },
+              {
+                icon: 'delete',
+                tooltip: 'Delete Member',
+                onClick: (event, rowData) => deleteMember(rowData),
+              },
+              {
+                icon: 'add',
+                tooltip: 'Add Member',
+                isFreeAction: true,
+                onClick: () => setAddMember(),
+              },
+            ]
+      }
     />
   );
 }
